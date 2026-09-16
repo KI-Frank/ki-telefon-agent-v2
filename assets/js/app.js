@@ -179,14 +179,27 @@
     /* Einziger Ort, an dem Analyse-Skripte geladen werden – aufgerufen nur nach "Alle akzeptieren"
        bzw. bei gespeicherter Einwilligung (siehe oben). Ohne Einwilligung lädt nichts.
        Meta-Pixel ist bewusst entfernt (Briefing A4).
-       TODO: GA4-Measurement-ID eintragen und hier laden.
+       GA4 laedt nur auf ki-telefon-agent.com, nicht auf der GitHub-Vorschau.
        TODO [OFFEN]: Microsoft Clarity auf Gesundheitsseiten behalten oder entfernen? Bis zur Entscheidung nur hier (nach Einwilligung) laden. */
+    if (window.__ktaTracking || !/(^|\.)ki-telefon-agent\.com$/.test(location.hostname)) return;
+    window.__ktaTracking = true;
+    var GA4_ID = 'G-CMD4SVCQEQ';
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', GA4_ID, { anonymize_ip: true });
   }
 
   /* ---------- Aktiven Nav-Link markieren (Desktop + Mobile-Menü) ---------- */
   var path = location.pathname.split('/').pop() || 'index.html';
+  var dir = location.pathname.replace(/index\.(html|php)$/, '');
   document.querySelectorAll('.nav-links a[href], .mobile-menu a[href], .nav-drop-menu a[href]').forEach(function (a) {
-    if (a.getAttribute('href') === path) a.classList.add('active');
+    var h = a.getAttribute('href');
+    if (h === path || (h.charAt(0) === '/' && h === dir)) a.classList.add('active');
   });
 
   /* ---------- Blog: Lesefortschritt-Balken ---------- */
