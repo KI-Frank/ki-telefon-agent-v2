@@ -162,17 +162,6 @@
     });
   });
 
-  /* ---------- Testanruf-Formular ---------- */
-  window.submitForm = function (ev) {
-    ev.preventDefault();
-    var form = ev.target;
-    /* TODO: Endpoint anbinden (z. B. LeadConnector/Make-Webhook), sobald vom Kunden bereitgestellt. */
-    form.style.display = 'none';
-    var success = document.getElementById('formSuccess');
-    if (success) success.classList.add('on');
-    return false;
-  };
-
   /* ---------- Cookie-Banner ---------- */
   var banner = document.getElementById('cookieBanner');
   if (banner) {
