@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://itisrob.github.io/ki-telefon-agent-v2/sitemap.xml
