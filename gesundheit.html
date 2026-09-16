@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>KI-Telefonagent für Arztpraxen, Kliniken &amp; Therapiezentren | KI Telefon-Agent</title>
+ <meta name="description" content="Der KI-Telefonagent für das Gesundheitswesen: nimmt Terminwünsche, Absagen und Rezeptanfragen an, entlastet den Empfang und ist 24/7 erreichbar – DSGVO-konform in der EU gehostet.">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="assets/css/styles.css">
+ <style>
+ /* Seiten-spezifisch: Zielgruppen-Raster 2 × 2 mit Aufgabenliste */
+ .uc-grid.ug-2 { grid-template-columns: 1fr 1fr; }
+ @media (max-width: 760px) { .uc-grid.ug-2 { grid-template-columns: 1fr; } }
+ .seg-list { margin-top: 14px; display: grid; gap: 8px; position: relative; z-index: 1; }
+ .seg-list li { display: flex; gap: 10px; font-size: .9rem; color: var(--text-light-2); align-items: flex-start; }
+ .seg-list svg { width: 16px; height: 16px; flex: none; margin-top: 3px; stroke: var(--accent-deep); }
+ /* 4-spaltiges Preisraster wie auf preise.html */
+ .price-grid.pg-4 { grid-template-columns: repeat(4, 1fr); }
+ .price-grid.pg-4 .price-num { font-size: 2.1rem; }
+ .price-grid.pg-4 .price-card { padding: 32px 26px; }
+ @media (max-width: 1100px) { .price-grid.pg-4 { grid-template-columns: 1fr 1fr; max-width: 760px; margin: 0 auto; } }
+ @media (max-width: 640px) { .price-grid.pg-4 { grid-template-columns: 1fr; max-width: 460px; } }
+ .hero-note { font-size: .8rem; color: var(--text-dark-3, rgba(255,255,255,.55)); margin-top: 14px; }
+ </style>
+
+ <!-- SEO:START -->
+ <link rel="canonical" href="https://ki-frank.github.io/ki-telefon-agent-v2/gesundheit.html">
+ <meta name="robots" content="noindex,nofollow">
+ <meta name="theme-color" content="#0a0a0a">
+ <meta name="author" content="AI Voice Impact UG">
+ <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+ <link rel="apple-touch-icon" href="assets/img/favicon.svg">
+ <meta property="og:type" content="website">
+ <meta property="og:site_name" content="KI Telefon-Agent">
+ <meta property="og:locale" content="de_DE">
+ <meta property="og:url" content="https://ki-frank.github.io/ki-telefon-agent-v2/gesundheit.html">
+ <meta property="og:title" content="KI-Telefonagent für Arztpraxen, Kliniken &amp; Therapiezentren | KI Telefon-Agent">
+ <meta property="og:description" content="Der KI-Telefonagent für das Gesundheitswesen: nimmt Terminwünsche, Absagen und Rezeptanfragen an, entlastet den Empfang und ist 24/7 erreichbar – DSGVO-konform in der EU gehostet.">
+ <meta property="og:image" content="https://ki-frank.github.io/ki-telefon-agent-v2/assets/img/branchen/arztpraxen-1.jpg">
+ <meta property="og:image:alt" content="KI-Telefonagent für Arztpraxen und Kliniken">
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="KI-Telefonagent für Arztpraxen, Kliniken &amp; Therapiezentren | KI Telefon-Agent">
+ <meta name="twitter:description" content="Der KI-Telefonagent für das Gesundheitswesen: nimmt Terminwünsche, Absagen und Rezeptanfragen an, entlastet den Empfang und ist 24/7 erreichbar – DSGVO-konform in der EU gehostet.">
+ <meta name="twitter:image" content="https://ki-frank.github.io/ki-telefon-agent-v2/assets/img/branchen/arztpraxen-1.jpg">
+ <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://ki-frank.github.io/ki-telefon-agent-v2/#org", "name": "KI Telefon-Agent", "legalName": "AI Voice Impact UG (haftungsbeschränkt)", "url": "https://ki-frank.github.io/ki-telefon-agent-v2/", "logo": "https://ki-frank.github.io/ki-telefon-agent-v2/assets/img/logo-new.svg", "email": "support@ki-telefon-agent.com", "telephone": "+49-40-74302560", "address": {"@type": "PostalAddress", "streetAddress": "Hohe Bleichen 8", "postalCode": "20354", "addressLocality": "Hamburg", "addressCountry": "DE"}}, {"@type": "WebPage", "@id": "https://ki-frank.github.io/ki-telefon-agent-v2/gesundheit.html", "name": "KI-Telefonagent für Arztpraxen, Kliniken & Therapiezentren", "inLanguage": "de-DE", "publisher": {"@id": "https://ki-frank.github.io/ki-telefon-agent-v2/#org"}}]}</script>
+ <!-- SEO:END -->
+</head>
+<body>
+
+<!-- ======================== NAV ======================== -->
+<header class="nav">
+ <div class="nav-inner">
+ <a class="nav-logo" href="index.html"><img src="assets/img/logo-new.svg" alt="KI Telefon-Agent – AI Voice Impact"></a>
+ <ul class="nav-links">
+ <li><a href="so-funktionierts.html">So funktioniert's</a></li>
+ <li><a href="branchen.html">Branchen</a></li>
+ <li class="nav-drop">
+ <button class="nav-drop-btn" type="button">Lösungen
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+ </button>
+ <div class="nav-drop-menu">
+ <a href="use-cases.html"><strong>Anwendungsfälle</strong><span>Inbound, Outbound, Notdienst &amp; mehr</span></a>
+ <a href="onoffice.html"><strong>onOffice-Integration</strong><span>Die tiefste CRM-Anbindung für Makler</span></a>
+ <a href="custom.html"><strong>Custom-Integration</strong><span>HubSpot, Salesforce, Zapier &amp; 5.000+ Tools</span></a>
+ </div>
+ </li>
+ <li><a href="preise.html">Preise</a></li>
+ <li class="nav-drop">
+ <button class="nav-drop-btn" type="button">Ressourcen
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+ </button>
+ <div class="nav-drop-menu">
+ <a href="blog.html"><strong>Blog</strong><span>Guides zu KI-Telefonie &amp; DSGVO</span></a>
+ <a href="interview.html"><strong>Kunden-Interview</strong><span>Oliver Fründt über den Praxiseinsatz</span></a>
+ <a href="ueber-uns.html"><strong>Über uns</strong><span>Das Team hinter KI Telefon-Agent</span></a>
+ </div>
+ </li>
+ </ul>
+ <div class="nav-cta">
+ <a class="nav-phone" href="tel:+494074302560">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+ 040 – 7430 2560
+ </a>
+ <a class="btn btn-primary" href="termin.html">Strategiegespräch</a>
+ </div>
+ <button class="burger" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+ </div>
+</header>
+
+<nav class="mobile-menu">
+ <a href="so-funktionierts.html">So funktioniert's</a>
+ <a href="branchen.html">Branchen</a>
+ <div class="mm-group">Lösungen</div>
+ <a href="use-cases.html">Anwendungsfälle</a>
+ <a href="onoffice.html">onOffice-Integration</a>
+ <a href="custom.html">Custom-Integration</a>
+ <div class="mm-group">Mehr</div>
+ <a href="preise.html">Preise</a>
+ <a href="blog.html">Blog</a>
+ <a href="interview.html">Kunden-Interview</a>
+ <a href="ueber-uns.html">Über uns</a>
+ <a href="tel:+494074302560">📞 040 – 7430 2560</a>
+ <a class="btn btn-primary" href="termin.html">Strategiegespräch buchen</a>
+</nav>
+
+<!-- ======================== PAGE-HERO ======================== -->
+<section class="page-hero dots">
+ <div class="blob blob-cyan" style="width:460px;height:460px;top:-140px;right:-120px;"></div>
+ <div class="blob blob-blue" style="width:380px;height:380px;bottom:-160px;left:-140px;"></div>
+ <div class="container" style="position:relative;z-index:1">
+ <span class="pill">Arztpraxen · Kliniken · Therapiezentren · Gesundheitsdienstleister</span>
+ <h1 class="h1">Mehr Zeit für Patienten. <span class="grad-text">Weniger Zeit am Telefon.</span></h1>
+ <p class="sub lead">Der KI-Telefonagent nimmt jeden Anruf an – Terminwünsche, Absagen, Rezeptanfragen und Fragen zu Sprechzeiten. Ihr Empfang hat wieder die Hände frei für die Menschen vor Ort, und kein Anrufer hört mehr das Besetztzeichen.</p>
+ <div class="hero-ctas">
+ <a class="btn btn-primary btn-lg" href="termin.html">Praxis-Demo vereinbaren</a>
+ <a class="btn btn-outline btn-lg" href="tel:+494074306953">
+ <i class="draw draw-t"></i><i class="draw draw-r"></i><i class="draw draw-b"></i><i class="draw draw-l"></i>
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+ Stimme live testen
+ </a>
+ </div>
+ <p class="hero-note">Die Testnummer zeigt Stimme und Reaktionszeit an einer Beispielrolle. Für Ihre Einrichtung richten wir eine eigene Rolle ein.</p>
+ <div class="trust-badges trust-badges-top" style="margin-top:30px">
+ <img src="assets/img/badge-made-in-germany.png" alt="Made in Germany" loading="lazy">
+ <img src="assets/img/badge-eu-dsgvo.png" alt="EU-DSGVO-konform" loading="lazy">
+ </div>
+ </div>
+</section>
+
+<!-- ======================== ALLTAG AM EMPFANG ======================== -->
+<section class="sec sec-light">
+ <div class="container">
+ <div class="sec-head rv">
+ <span class="pill">Der Alltag am Empfang</span>
+ <h2 class="h2">Das Telefon klingelt – <span class="grad-text">und vorne wartet schon der Nächste</span></h2>
+ <p class="sub lead">Am Empfang laufen Patientenbetreuung, Telefon und Organisation gleichzeitig. Irgendetwas bleibt dabei immer liegen.</p>
+ </div>
+ <div class="uc-grid rv">
+ <div class="uc-card">
+ <h3>Besetzt zu Sprechstundenbeginn</h3>
+ <p>Morgens wollen alle gleichzeitig durch. Wer nicht durchkommt, versucht es später – oder ruft gleich bei einer anderen Praxis an.</p>
+ </div>
+ <div class="uc-card">
+ <h3>Empfang zwischen zwei Stühlen</h3>
+ <p>Das Team soll Patienten vor Ort betreuen und nebenbei jeden Anruf annehmen. Beides leidet – und die Arbeit bleibt bis nach Feierabend liegen.</p>
+ </div>
+ <div class="uc-card">
+ <h3>Leere Termine trotz Warteliste</h3>
+ <p>Absagen landen auf dem Anrufbeantworter und werden erst Stunden später abgehört. Der Termin verfällt, obwohl andere dringend darauf warten.</p>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- ======================== ZIELGRUPPEN ======================== -->
+<section class="sec sec-gray">
+ <div class="container">
+ <div class="sec-head rv">
+ <span class="pill">Für Ihre Einrichtung</span>
+ <h2 class="h2">Eine Agentenrolle, <span class="grad-text">die Ihre Abläufe kennt</span></h2>
+ <p class="sub lead">Sprechzeiten, Leistungen, Behandler, Vertretungen und Weiterleitungsregeln: Wir richten den Agenten auf Ihre Einrichtung ein – nicht auf eine Branche von der Stange.</p>
+ </div>
+ <div class="uc-grid ug-2 rv">
+ <div class="uc-card">
+ <img src="assets/img/branchen/arztpraxen-2.jpg" alt="KI-Telefonagent für Arztpraxen" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;margin-bottom:16px">
+ <h3>Arztpraxen &amp; MVZ</h3>
+ <p>Hält die Leitung frei, wenn am Tresen Hochbetrieb ist – und nimmt auch vor und nach der Sprechstunde ab.</p>
+ <ul class="seg-list">
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Terminwünsche und Absagen entgegennehmen</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Wünsche nach Folgerezept oder Überweisung aufnehmen – die Praxis prüft und gibt frei</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Sprechzeiten, Urlaubsvertretung und Anfahrt beantworten</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Rückrufwünsche mit Anliegen an das Team übergeben</li>
+ </ul>
+ </div>
+ <div class="uc-card">
+ <img src="assets/img/branchen/privatkliniken-2.jpg" alt="KI-Telefonagent für Kliniken" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;margin-bottom:16px">
+ <h3>Kliniken &amp; Privatkliniken</h3>
+ <p>Nimmt die Anrufe an, die sonst in der Zentrale auflaufen, und bringt sie strukturiert zur richtigen Stelle.</p>
+ <ul class="seg-list">
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Anfragen zu Behandlungen und Aufnahme strukturiert erfassen</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Dringende Anliegen sofort an die zuständige Abteilung weiterleiten</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Organisatorische Fragen zu Besuch, Anreise und Unterlagen beantworten</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Internationale Patienten in über 100 Sprachen betreuen</li>
+ </ul>
+ </div>
+ <div class="uc-card">
+ <img src="assets/img/branchen/therapiezentren-3.jpg" alt="KI-Telefonagent für Therapiezentren" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;margin-bottom:16px">
+ <h3>Therapiezentren</h3>
+ <p>Für Physiotherapie, Ergotherapie, Logopädie und Psychotherapie – überall dort, wo Behandler in der Behandlung nicht ans Telefon können.</p>
+ <ul class="seg-list">
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Termine und Folgetermine koordinieren</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Wartelisten führen und bei Absagen automatisch nachrücken lassen</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Bei Neuanfragen abfragen, ob eine Verordnung vorliegt</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Behandler in der Behandlung ungestört arbeiten lassen</li>
+ </ul>
+ </div>
+ <div class="uc-card">
+ <img src="assets/img/branchen/gesundheitsdienstleister-1.jpg" alt="KI-Telefonagent für Gesundheitsdienstleister" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;margin-bottom:16px">
+ <h3>Gesundheitsdienstleister</h3>
+ <p>Für Pflegedienste, Sanitätshäuser, Labore und andere Anbieter, bei denen jede Anfrage ein neuer Auftrag sein kann.</p>
+ <ul class="seg-list">
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Erstanfragen zu Leistungen vollständig aufnehmen</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Rückrufe mit Kontext und Priorität an das Team geben</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Wiederkehrende Fragen zu Ablauf und Erreichbarkeit beantworten</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Jedes Anliegen sauber im System dokumentieren</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- ======================== DREI ANRUFE (SZENARIEN) ======================== -->
+<section class="sec sec-dark">
+ <div class="container">
+ <div class="sec-head rv">
+ <span class="pill">So läuft's am Telefon</span>
+ <h2 class="h2">Drei Anrufe, <span class="grad-text">die Ihr Team nicht mehr annehmen muss</span></h2>
+ <p class="sub lead">Spracherkennung in unter 270 ms, Antwort in unter 600 ms: Der Agent spricht natürlich, fragt nach, wenn etwas unklar ist, und gibt sich als KI-Assistent zu erkennen.</p>
+ </div>
+
+ <div class="journey-item">
+ <div class="j-copy rv">
+ <span class="pill">Montag, 7:58 Uhr</span>
+ <h3>Terminwunsch vor der Sprechstunde</h3>
+ <p>Eine Patientin möchte einen Kontrolltermin. Statt Besetztzeichen erreicht sie sofort jemanden: Der Agent nimmt Name, Rückrufnummer, Anliegen und Wunschzeitraum auf und bucht den Termin im angebundenen Kalender – oder legt eine Rückrufaufgabe an, wenn Ihr Team Termine selbst vergibt.</p>
+ <div class="j-chips">
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Sofort abgenommen</span>
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Termin oder Rückrufaufgabe</span>
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>SMS-Bestätigung</span>
+ </div>
+ </div>
+ <div class="j-media rv rv-d1">
+ <div class="browser-frame">
+ <div class="bf-bar"><i></i><i></i><i></i><span>ki-telefon-agent · terminwunsch</span></div>
+ <div class="bf-body"><img src="assets/img/branchen/arztpraxen-1.jpg" alt="Terminannahme in der Arztpraxis durch den KI-Telefonagenten" loading="lazy"></div>
+ </div>
+ </div>
+ </div>
+
+ <div class="journey-item flip">
+ <div class="j-copy rv">
+ <span class="pill">Mittwoch, 19:30 Uhr</span>
+ <h3>Absage am Abend – Termin am Morgen wieder belegt</h3>
+ <p>Ein Patient sagt seine Physiotherapie für morgen früh ab. Der Agent nimmt die Absage an und meldet sich bei der nächsten Person auf der Warteliste. Aus einer Lücke im Kalender wird eine Behandlung – ohne dass jemand den Anrufbeantworter abhören musste.</p>
+ <div class="j-chips">
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Absage erfasst</span>
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Warteliste angerufen</span>
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Termin neu vergeben</span>
+ </div>
+ </div>
+ <div class="j-media rv rv-d1">
+ <div class="browser-frame">
+ <div class="bf-bar"><i></i><i></i><i></i><span>ki-telefon-agent · warteliste</span></div>
+ <div class="bf-body"><img src="assets/img/branchen/therapiezentren-3.jpg" alt="Wartelisten-Management im Therapiezentrum" loading="lazy"></div>
+ </div>
+ </div>
+ </div>
+
+ <div class="journey-item">
+ <div class="j-copy rv">
+ <span class="pill">Samstag, 10:15 Uhr</span>
+ <h3>Akute Beschwerden außerhalb der Sprechzeiten</h3>
+ <p>Ein Anrufer schildert starke Beschwerden. Der Agent gibt bewusst keine medizinische Einschätzung ab: Bei Lebensgefahr verweist er auf den Notruf 112, außerhalb der Sprechzeiten auf den ärztlichen Bereitschaftsdienst 116 117. Das Anliegen wird für Ihr Team dokumentiert, damit am Montag niemand bei null anfängt.</p>
+ <div class="j-chips">
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Keine medizinische Beratung</span>
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Verweis auf 112 / 116 117</span>
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Anliegen dokumentiert</span>
+ </div>
+ </div>
+ <div class="j-media rv rv-d1">
+ <div class="browser-frame">
+ <div class="bf-bar"><i></i><i></i><i></i><span>ki-telefon-agent · außerhalb der sprechzeiten</span></div>
+ <div class="bf-body"><img src="assets/img/branchen/privatkliniken-2.jpg" alt="Anrufannahme außerhalb der Sprechzeiten" loading="lazy"></div>
+ </div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- ======================== FUNKTIONEN (BENTO) ======================== -->
+<section class="sec sec-light">
+ <div class="container">
+ <div class="sec-head rv">
+ <span class="pill">Was der Agent übernimmt</span>
+ <h2 class="h2">Routineanrufe an die KI. <span class="grad-text">Die wichtigen Gespräche an Ihr Team.</span></h2>
+ <p class="sub lead">Der Agent ersetzt Ihren Empfang nicht – er fängt ab, was sich wiederholt, und gibt alles andere mit vollständigem Kontext weiter.</p>
+ </div>
+ <div class="bento">
+ <div class="bento-card rv">
+ <span class="cat">Erreichbarkeit</span>
+ <h3>24/7 und im Überlauf</h3>
+ <p>Übernimmt rund um die Uhr, nur außerhalb der Sprechzeiten oder erst, wenn die Leitung besetzt ist. Sie legen fest, wann.</p>
+ </div>
+ <div class="bento-card rv rv-d1">
+ <span class="cat">Termine</span>
+ <h3>Termine mit SMS-Bestätigung</h3>
+ <p>Bucht im angebundenen Kalender und bestätigt per SMS. Weniger Rückfragen, weniger vergessene Termine.</p>
+ </div>
+ <div class="bento-card rv rv-d2">
+ <span class="cat">Auslastung</span>
+ <h3>Wartelisten &amp; Nachrücken</h3>
+ <p>Wird ein Termin frei, meldet sich der Agent bei der nächsten Person auf der Warteliste – auch abends.</p>
+ </div>
+ <div class="bento-card rv">
+ <span class="cat">Anliegen</span>
+ <h3>Rezept- &amp; Überweisungswünsche</h3>
+ <p>Nimmt den Wunsch strukturiert auf und legt ihn als Aufgabe ab. Geprüft und freigegeben wird ausschließlich durch Ihre Praxis.</p>
+ </div>
+ <div class="bento-card rv rv-d1">
+ <span class="cat">Team</span>
+ <h3>Warme Weiterleitung</h3>
+ <p>Dringendes geht direkt an die zuständige Person, inklusive gesprochener Zusammenfassung. Niemand muss von vorn fragen.</p>
+ </div>
+ <div class="bento-card rv rv-d2">
+ <span class="cat">Sprachen</span>
+ <h3>Über 100 Sprachen</h3>
+ <p>Erkennt die Sprache automatisch und wechselt mitten im Gespräch. Die Zusammenfassung für Ihr Team bleibt auf Deutsch.</p>
+ </div>
+ <div class="bento-card rv">
+ <span class="cat">Dokumentation</span>
+ <h3>Jedes Anliegen festgehalten</h3>
+ <p>Nach jedem Anruf liegen Anliegen, Rückrufnummer und nächste Schritte vor – per E-Mail, im Dashboard oder in Ihrem System.</p>
+ </div>
+ <div class="bento-card rv rv-d1">
+ <span class="cat">Anbindung</span>
+ <h3>Passend zu Ihren Systemen</h3>
+ <p>Über Schnittstelle, Webhook oder Zapier mit über 5.000 Tools. Welches Praxis- oder Terminsystem Sie nutzen, prüfen wir im Gespräch.</p>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- ======================== VERGLEICH ======================== -->
+<section class="sec sec-gray">
+ <div class="container">
+ <div class="sec-head rv">
+ <span class="pill">Der Unterschied</span>
+ <h2 class="h2">Anrufbeantworter oder <span class="grad-text">KI Telefon-Agent?</span></h2>
+ </div>
+ <div class="vs-grid">
+ <div class="vs-card vs-bad rv">
+ <h3>Anrufbeantworter &amp; Warteschleife</h3>
+ <ul>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>„Bitte sprechen Sie nach dem Signalton“ – Rückrufe stapeln sich</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Warteschleife zu Stoßzeiten – Anrufer legen auf</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Absagen werden erst Stunden später abgehört</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Nachrichten unvollständig, Rückrufnummer oft unverständlich</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Fremdsprachige Anrufer bleiben ohne Hilfe</li>
+ </ul>
+ </div>
+ <div class="vs-card vs-good rv rv-d1">
+ <h3><img src="assets/img/logo-new-mark.svg" alt="" style="width:30px;height:30px">KI Telefon-Agent</h3>
+ <ul>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Sofort abgenommen – auch zu Sprechstundenbeginn</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Natürliches Gespräch statt Tastenmenü</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Freie Termine direkt wieder vergeben</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Vollständige Anliegen, Nummer wird zurückbestätigt</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Über 100 Sprachen, Zusammenfassung auf Deutsch</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- ======================== DATENSCHUTZ & GRENZEN ======================== -->
+<section class="sec sec-dark">
+ <div class="container" style="margin-bottom:52px">
+ <p class="compliance-note rv" style="text-align:center">
+ <b>BDSG-konform</b> · <b>EU AI Act konform</b> · <b>TÜV-NORD-zertifizierter Datenschutzbeauftragter</b> · <b>AVV standardmäßig enthalten</b>
+ </p>
+ </div>
+ <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center" id="security-grid">
+ <div class="rv">
+ <span class="pill">Datenschutz &amp; Verantwortung</span>
+ <h2 class="h2" style="margin-bottom:16px">Gesundheitsdaten <span class="grad-text">verdienen besonderen Schutz</span></h2>
+ <p class="sub" style="margin-bottom:30px">Gesundheitsdaten zählen nach Art. 9 DSGVO zu den besonders geschützten Daten. Deshalb läuft der Agent in der EU-Region Frankfurt, verschlüsselt nach AES-256 – und fragt nur ab, was für das Anliegen wirklich nötig ist.</p>
+ <div class="stat-grid">
+ <div class="stat-card rv"><b>ISO 27001</b><span>Zertifizierte Server (AWS Frankfurt)</span></div>
+ <div class="stat-card rv rv-d1"><b>AES-256</b><span>Verschlüsselung (Transit + Rest)</span></div>
+ <div class="stat-card rv rv-d2"><b>EU-Region Frankfurt</b><span>Datenresidenz-Garantie</span></div>
+ <div class="stat-card rv rv-d3"><b><span data-count="99.9" data-suffix=" %">0</span></b><span>Uptime-Garantie (SLA)</span></div>
+ </div>
+ </div>
+ <div class="vs-card vs-good rv rv-d1">
+ <h3>Was der Agent bewusst nicht tut</h3>
+ <ul>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Keine Diagnosen und keine medizinische Beratung</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Keine Auskunft über Befunde oder Laborwerte am Telefon</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Keine Rezeptfreigabe – er nimmt den Wunsch nur auf</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Kein Verschweigen, dass eine KI spricht</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Keine Abfrage von Daten, die für das Anliegen nicht nötig sind</li>
+ </ul>
+ </div>
+ </div>
+</section>
+
+<!-- ======================== EINRICHTUNG (3 SCHRITTE) ======================== -->
+<section class="sec sec-light">
+ <div class="container">
+ <div class="sec-head rv">
+ <span class="pill">In 3 Schritten live</span>
+ <h2 class="h2">Ihre Nummer bleibt. <span class="grad-text">Ihr Empfang wird entlastet.</span></h2>
+ <p class="sub lead">Keine neue Hardware, keine neue Telefonanlage. Wir übernehmen die Einrichtung und testen alles, bevor der erste Patient anruft.</p>
+ </div>
+ <div class="steps">
+ <div class="step rv"><h3>Rufumleitung einrichten</h3><p>Anrufe gehen bei Besetzt, nach mehrmaligem Klingeln oder außerhalb der Sprechzeiten an den Agenten. Ihre Praxisnummer bleibt unverändert.</p></div>
+ <div class="step rv rv-d1"><h3>Rolle für Ihre Einrichtung</h3><p>Sprechzeiten, Leistungen, Behandler, Vertretungen und Weiterleitungsregeln – wir konfigurieren den Agenten und testen ihn mit Ihnen.</p></div>
+ <div class="step rv rv-d2"><h3>Live gehen</h3><p>Das technische Setup dauert unter 5 Minuten. Mit Rolle und persönlichem Onboarding sind Sie in wenigen Tagen live.</p></div>
+ </div>
+ </div>
+</section>
+
+<!-- ======================== PREISE ======================== -->
+<section class="sec sec-dark dots" id="preise">
+ <div class="container">
+ <div class="sec-head rv">
+ <span class="pill">Preise</span>
+ <h2 class="h2">Transparent, <span class="grad-text">monatlich kündbar</span></h2>
+ <p class="sub lead">Abrechnung im 30-Sekunden-Takt. Sie zahlen für Gesprächsminuten, nicht für zusätzliches Personal.</p>
+ </div>
+ <div class="price-grid pg-4">
+ <div class="price-card rv">
+ <h3>Start</h3>
+ <p class="for">Zum Testen &amp; für wenig Volumen</p>
+ <div class="price-num">39 €<small> / Monat</small></div>
+ <ul>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>100 Freiminuten inklusive</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Inbound &amp; Outbound</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>24/7 Erreichbarkeit</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Danach 0,29 €/Min.</li>
+ </ul>
+ </div>
+ <div class="price-card rv rv-d1">
+ <h3>Smart</h3>
+ <p class="for">Für kleine Teams</p>
+ <div class="price-num">199 €<small> / Monat</small></div>
+ <ul>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>600 Freiminuten inklusive</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Inbound &amp; Outbound</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>24/7 Erreichbarkeit</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Danach 0,25 €/Min.</li>
+ </ul>
+ </div>
+ <div class="price-card hot rv rv-d2">
+ <span class="price-flag">Beliebteste Wahl</span>
+ <h3>Pro</h3>
+ <p class="for">Für wachsende Unternehmen</p>
+ <div class="price-num">599 €<small> / Monat</small></div>
+ <ul>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>1.800 Freiminuten inklusive</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Inbound &amp; Outbound</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>24/7 Erreichbarkeit</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Danach 0,22 €/Min.</li>
+ </ul>
+ </div>
+ <div class="price-card rv rv-d3">
+ <h3>Enterprise</h3>
+ <p class="for">Für hohes Anrufvolumen</p>
+ <div class="price-num">1.299 €<small> / Monat</small></div>
+ <ul>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>4.000 Freiminuten inklusive</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Inbound &amp; Outbound</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>24/7 Erreichbarkeit</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Danach 0,19 €/Min.</li>
+ </ul>
+ </div>
+ </div>
+ <p class="price-note rv">Alle Preise zzgl. MwSt. · Abrechnung im 30-Sekunden-Takt · Monatlich kündbar<br>Einmalig: Grundsetup 499 € · Maßgeschneiderte Agentenrolle 799 €<br><a href="preise.html" style="color:var(--accent)">Alle Tarife im Detail ansehen →</a></p>
+ </div>
+</section>
+
+<!-- ======================== FAQ ======================== -->
+<section class="sec sec-light">
+ <div class="container">
+ <div class="sec-head rv">
+ <span class="pill">FAQ</span>
+ <h2 class="h2">Die Fragen, die Praxen zuerst stellen</h2>
+ <p class="sub">Ehrliche Antworten – auch auf die kritischen.</p>
+ </div>
+ <div class="faq rv">
+ <details class="faq-item">
+ <summary>Gibt die KI medizinische Auskünfte?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></summary>
+ <div class="faq-body">Nein. Der Agent stellt keine Diagnosen, gibt keine medizinischen Empfehlungen und nennt keine Befunde oder Laborwerte. Er nimmt Anliegen auf, beantwortet organisatorische Fragen und übergibt alles Medizinische an Ihr Team.</div>
+ </details>
+ <details class="faq-item">
+ <summary>Was passiert, wenn jemand einen Notfall schildert?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></summary>
+ <div class="faq-body">Bei Hinweisen auf Lebensgefahr verweist der Agent sofort auf den Notruf 112. Außerhalb der Sprechzeiten nennt er den ärztlichen Bereitschaftsdienst 116 117. Während der Sprechzeiten kann er dringende Anrufe direkt an Ihr Team weiterleiten. Wie genau er reagiert, legen wir gemeinsam mit Ihnen in der Agentenrolle fest.</div>
+ </details>
+ <details class="faq-item">
+ <summary>Ist das mit Gesundheitsdaten DSGVO-konform?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></summary>
+ <div class="faq-body">Die Verarbeitung läuft in der EU-Region Frankfurt, verschlüsselt nach AES-256, mit Auftragsverarbeitungsvertrag und einem TÜV-NORD-zertifizierten Datenschutzbeauftragten. Weil Gesundheitsdaten besonders geschützt sind, stellen wir den Agenten datensparsam ein: Er fragt nur ab, was für Termin oder Rückruf nötig ist. Vor dem Start stimmen wir die Einrichtung mit Ihnen und Ihrem Datenschutzbeauftragten ab.</div>
+ </details>
+ <details class="faq-item">
+ <summary>Funktioniert das mit unserem Praxisverwaltungssystem?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></summary>
+ <div class="faq-body">Das hängt vom System ab. Wo es eine Schnittstelle gibt, binden wir den Agenten per API, Webhook oder Zapier an. Wo nicht, landen Anliegen und Terminwünsche strukturiert per E-Mail, im Dashboard oder in einer Tabelle bei Ihrem Team. Welche Variante für Sie passt, klären wir im Strategiegespräch.</div>
+ </details>
+ <details class="faq-item">
+ <summary>Behalten wir unsere Telefonnummer?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></summary>
+ <div class="faq-body">Ja. Sie leiten Anrufe per Rufumleitung weiter – zum Beispiel nur bei Besetzt, nach mehrmaligem Klingeln oder außerhalb der Sprechzeiten. Auch eine SIP-Trunk-Anbindung ist möglich.</div>
+ </details>
+ <details class="faq-item">
+ <summary>Kommen auch ältere Patienten damit zurecht?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></summary>
+ <div class="faq-body">Ja, gerade weil es kein Tastenmenü gibt. Anrufer sprechen ganz normal, der Agent fragt geduldig nach und wiederholt Rückrufnummern zur Bestätigung. Wer lieber mit einem Menschen spricht, kann während der Sprechzeiten an Ihr Team weitergeleitet werden.</div>
+ </details>
+ <details class="faq-item">
+ <summary>Merken Patienten, dass sie mit einer KI sprechen?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></summary>
+ <div class="faq-body">Ja, und das ist gewollt: Gemäß EU AI Act meldet sich der Agent als virtueller Assistent Ihrer Einrichtung. Durch Premiumstimmen und Antwortzeiten unter 600 ms klingt das Gespräch trotzdem natürlich.</div>
+ </details>
+ </div>
+ </div>
+</section>
+
+<!-- ======================== FINAL CTA ======================== -->
+<section class="final-cta">
+ <div class="rv">
+ <h2 class="h2">Ihr Praxistelefon – nie wieder besetzt</h2>
+ <p class="sub">Lassen Sie sich im Strategiegespräch zeigen, wie der Agent für Ihre Einrichtung klingt – oder testen Sie die Stimme gleich selbst am Telefon.</p>
+ <div class="hero-ctas">
+ <a class="btn btn-primary btn-lg" href="termin.html">Praxis-Demo vereinbaren</a>
+ <a class="btn btn-outline btn-lg" href="tel:+494074306953">
+ <i class="draw draw-t"></i><i class="draw draw-r"></i><i class="draw draw-b"></i><i class="draw draw-l"></i>
+ 040 – 743 069 53 anrufen
+ </a>
+ </div>
+ </div>
+</section>
+
+<!-- ======================== FOOTER ======================== -->
+<footer class="footer">
+ <div class="container">
+ <div class="footer-grid">
+ <div class="footer-brand">
+ <img src="assets/img/logo-new.svg" alt="KI Telefon-Agent">
+ <p>Der KI-Telefonassistent der nächsten Generation – für Unternehmen, die keinen Anruf mehr verpassen wollen. Made in Hamburg.</p>
+ <div class="footer-badges">
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>In der EU gehostet</span>
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>EU AI Act konform</span>
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>DSGVO-konform</span>
+ </div>
+ </div>
+ <div>
+ <h4>Produkt</h4>
+ <ul>
+ <li><a href="so-funktionierts.html">So funktioniert's</a></li>
+ <li><a href="branchen.html">Branchen</a></li>
+ <li><a href="use-cases.html">Anwendungsfälle</a></li>
+ <li><a href="preise.html">Preise</a></li>
+ <li><a href="termin.html">Live-Demo</a></li>
+ </ul>
+ </div>
+ <div>
+ <h4>Integrationen</h4>
+ <ul>
+ <li><a href="onoffice.html">onOffice</a></li>
+ <li><a href="custom.html">HubSpot &amp; Salesforce</a></li>
+ <li><a href="custom.html">Zapier (5.000+ Tools)</a></li>
+ <li><a href="custom.html">Custom-CRM</a></li>
+ </ul>
+ </div>
+ <div>
+ <h4>Unternehmen</h4>
+ <ul>
+ <li><a href="ueber-uns.html">Über uns</a></li>
+ <li><a href="blog.html">Blog</a></li>
+ <li><a href="interview.html">Kunden-Interview</a></li>
+ <li><a href="termin.html">Kontakt &amp; Termin</a></li>
+ </ul>
+ </div>
+ <div>
+ <h4>Kontakt</h4>
+ <ul>
+ <li><a href="tel:+494074302560">040 – 7430 2560</a></li>
+ <li><a href="mailto:support@ki-telefon-agent.com">support@ki-telefon-agent.com</a></li>
+ <li><a href="ueber-uns.html">Hohe Bleichen 8<br>20354 Hamburg</a></li>
+ </ul>
+ <h4 style="margin-top:22px">Rechtliches</h4>
+ <ul>
+ <li><a href="impressum.html">Impressum</a></li>
+ <li><a href="datenschutz.html">Datenschutz</a></li>
+ <li><a href="agb.html">AGB</a></li>
+ <li><a href="avv.html">AVV</a></li>
+ </ul>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <span>© 2026 AI Voice Impact UG (haftungsbeschränkt). Alle Rechte vorbehalten.</span>
+ <span>Amtsgericht Hamburg · HRB 195056</span>
+ </div>
+ <span class="footer-giant">KI TELEFON-AGENT</span>
+ </div>
+</footer>
+
+<!-- ======================== COOKIE-BANNER ======================== -->
+<div class="cookie-banner" id="cookieBanner">
+ <p><b style="color:#fff">Cookies &amp; Datenschutz.</b> Wir verwenden Cookies für Analyse und Marketing (Google Analytics, Meta-Pixel, Microsoft Clarity). Details in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+ <div class="cookie-actions">
+ <button class="btn btn-primary btn-sm" onclick="cookieChoice(true)">Alle akzeptieren</button>
+ <button class="btn btn-ghost btn-sm" onclick="cookieChoice(false)">Nur essenzielle</button>
+ </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
