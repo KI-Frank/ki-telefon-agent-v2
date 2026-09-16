@@ -194,6 +194,13 @@
     window.gtag('config', GA4_ID, { anonymize_ip: true });
   }
 
+  /* ---------- E-Mail-Adressen erst im Browser zusammensetzen (Schutz vor Adress-Sammlern) ---------- */
+  document.querySelectorAll('a[data-m]').forEach(function (a) {
+    var addr = a.getAttribute('data-m').split('').reverse().join('').replace('#', '@');
+    a.setAttribute('href', 'mailto:' + addr);
+    a.textContent = addr;
+  });
+
   /* ---------- Aktiven Nav-Link markieren (Desktop + Mobile-Menü) ---------- */
   var path = location.pathname.split('/').pop() || 'index.html';
   var dir = location.pathname.replace(/index\.(html|php)$/, '');
