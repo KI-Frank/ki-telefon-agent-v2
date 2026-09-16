@@ -176,7 +176,11 @@
     if (consent === 'all') loadTracking();
   }
   function loadTracking() {
-    /* Tracking-IDs vom Kunden übernehmen (GA4, Meta-Pixel, MS Clarity) — bewusst erst nach Consent geladen. */
+    /* Einziger Ort, an dem Analyse-Skripte geladen werden – aufgerufen nur nach "Alle akzeptieren"
+       bzw. bei gespeicherter Einwilligung (siehe oben). Ohne Einwilligung lädt nichts.
+       Meta-Pixel ist bewusst entfernt (Briefing A4).
+       TODO: GA4-Measurement-ID eintragen und hier laden.
+       TODO [OFFEN]: Microsoft Clarity auf Gesundheitsseiten behalten oder entfernen? Bis zur Entscheidung nur hier (nach Einwilligung) laden. */
   }
 
   /* ---------- Aktiven Nav-Link markieren (Desktop + Mobile-Menü) ---------- */
