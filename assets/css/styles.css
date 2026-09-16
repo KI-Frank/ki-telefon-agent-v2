@@ -1099,3 +1099,66 @@ h1, h2, h3, h4 { font-weight: 700; line-height: 1.15; letter-spacing: -.02em; }
 .dl-name b { font-size: 1rem; color: var(--text-light-1); }
 .dl-num { font-family: var(--mono); font-weight: 600; font-size: .92rem; color: var(--accent-deep); white-space: nowrap; }
 @media (max-width: 420px) { .demo-line { flex-direction: column; align-items: flex-start; gap: 4px; } }
+
+/* ==========================================================================
+   Branchenseiten (Apotheken, Arztpraxen, Gesundheit) – gemeinsame Bausteine
+   ========================================================================== */
+
+/* Hinweiszeilen unter den Hero-Buttons */
+.hero-note { font-size: .8rem; color: var(--text-dark-3); margin-top: 14px; }
+.hero-region { font-size: .92rem; color: var(--text-dark-2); margin-top: 10px; }
+
+/* Rollen-Raster 2 x 2 mit Aufgabenliste */
+.uc-grid.ug-2 { grid-template-columns: 1fr 1fr; }
+@media (max-width: 760px) { .uc-grid.ug-2 { grid-template-columns: 1fr; } }
+.seg-list { margin-top: 14px; display: grid; gap: 8px; position: relative; z-index: 1; }
+.seg-list li { display: flex; gap: 10px; font-size: .9rem; color: var(--text-light-2); align-items: flex-start; }
+.seg-list svg { width: 16px; height: 16px; flex: none; margin-top: 3px; stroke: var(--accent-deep); }
+
+/* Gesprächsauszug im Browser-Rahmen */
+.tx { display: grid; gap: 10px; padding: 22px 20px 24px; }
+.tx .tx-label { font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+.tx p { font-size: .88rem; line-height: 1.5; padding: 10px 14px; border-radius: 14px; max-width: 88%; margin: 0; }
+.tx .ai { justify-self: start; background: rgba(230, 199, 106, .1); border: 1px solid rgba(230, 199, 106, .3); color: #fff; border-bottom-left-radius: 4px; }
+.tx .caller { justify-self: end; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12); color: var(--text-dark-2); border-bottom-right-radius: 4px; }
+.tx .result { justify-self: stretch; max-width: 100%; font-family: var(--mono); font-size: .76rem; color: #34d399; background: rgba(52, 211, 153, .08); border: 1px dashed rgba(52, 211, 153, .45); }
+.tx-caption { font-size: .75rem; color: var(--text-dark-3); margin-top: 10px; text-align: right; }
+
+/* Differenzierungs-Leiste */
+.diff-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 28px; }
+.diff-strip li { display: flex; gap: 10px; align-items: flex-start; padding: 16px 18px; border-radius: var(--r-md); background: #fff; border: 1px solid var(--card-light-border); font-size: .9rem; color: var(--text-light-2); }
+.diff-strip li b { color: var(--text-light-1); }
+.diff-strip svg { width: 18px; height: 18px; flex: none; margin-top: 2px; stroke: var(--accent-deep); }
+@media (max-width: 860px) { .diff-strip { grid-template-columns: 1fr; } }
+
+/* Brücke zur Nachbarbranche */
+.bridge-card { display: block; max-width: 860px; margin: 0 auto; text-align: left; }
+
+/* Entlastungs-Rechner */
+.rechner { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: stretch; }
+@media (max-width: 900px) { .rechner { grid-template-columns: 1fr; } }
+.rechner-inputs { display: grid; gap: 22px; padding: 28px; border-radius: var(--r-lg); background: #fff; border: 1px solid var(--card-light-border); }
+.rechner-field label { display: flex; justify-content: space-between; gap: 12px; font-size: .92rem; font-weight: 600; color: var(--text-light-1); margin-bottom: 8px; }
+.rechner-field .r-row { display: flex; align-items: center; gap: 14px; }
+.rechner-field input[type="range"] { flex: 1; min-width: 0; accent-color: var(--accent-deep); }
+.rechner-field input[type="number"] { width: 84px; padding: 8px 10px; border: 1px solid var(--card-light-border); border-radius: var(--r-sm); font: inherit; font-size: .95rem; text-align: right; color: var(--text-light-1); }
+.rechner-field .r-unit { font-size: .8rem; color: var(--text-light-3); min-width: 34px; }
+.rechner-result { display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 30px; border-radius: var(--r-lg); background: linear-gradient(160deg, #171208, #2a2109); border: 1px solid rgba(230, 199, 106, .4); color: #fff; }
+.rechner-result .r-main { font-size: clamp(1.6rem, 3.4vw, 2.3rem); font-weight: 800; line-height: 1.15; }
+.rechner-result .r-main b { color: var(--accent); }
+.rechner-result .r-sub { font-size: 1rem; color: var(--text-dark-2); margin-top: -8px; }
+.rechner-result ul { display: grid; gap: 8px; font-size: .95rem; color: var(--text-dark-2); }
+.rechner-result ul b { color: #fff; }
+.rechner-result .r-close { font-size: .9rem; color: var(--text-dark-2); border-top: 1px dashed rgba(255, 255, 255, .15); padding-top: 14px; }
+.rechner-note { font-size: .82rem; color: var(--text-light-3); text-align: center; margin-top: 18px; }
+
+/* Kontaktkarte Außendienst */
+.kontakt-card { display: grid; grid-template-columns: 160px 1fr; gap: 30px; align-items: center; max-width: 860px; margin: 0 auto; padding: 32px; border-radius: var(--r-xl); background: #fff; border: 1px solid var(--card-light-border); box-shadow: 0 18px 45px rgba(15, 23, 42, .08); }
+.kontakt-foto { width: 160px; height: 160px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: linear-gradient(160deg, #171208, #2a2109); color: var(--accent); font-size: 2.6rem; font-weight: 800; letter-spacing: .04em; }
+.kontakt-foto img { width: 100%; height: 100%; object-fit: cover; }
+.kontakt-text .pill { margin-bottom: 12px; }
+.kontakt-text h2 { color: var(--text-light-1); margin-bottom: 8px; }
+.kontakt-text p { color: var(--text-light-2); margin-bottom: 8px; }
+.kontakt-mobil a { color: var(--accent-deep); font-weight: 700; }
+.kontakt-text .btn { margin-top: 10px; }
+@media (max-width: 640px) { .kontakt-card { grid-template-columns: 1fr; text-align: center; } .kontakt-foto { margin: 0 auto; } }
