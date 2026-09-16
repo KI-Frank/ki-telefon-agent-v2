@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>KI-Telefonagent für Apotheken | KI Telefon-Agent</title>
+ <meta name="description" content="Der KI-Telefonagent für Apotheken: nimmt Vorbestellungen, Verfügbarkeitsanfragen und Botendienst-Wünsche an und entlastet das Team am HV-Tisch – die pharmazeutische Beratung bleibt beim Fachpersonal.">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="assets/css/styles.css">
+ <style>
+ /* Seiten-spezifisch: Aufgaben-Raster 2 × 2 mit Aufgabenliste */
+ .uc-grid.ug-2 { grid-template-columns: 1fr 1fr; }
+ @media (max-width: 760px) { .uc-grid.ug-2 { grid-template-columns: 1fr; } }
+ .seg-list { margin-top: 14px; display: grid; gap: 8px; position: relative; z-index: 1; }
+ .seg-list li { display: flex; gap: 10px; font-size: .9rem; color: var(--text-light-2); align-items: flex-start; }
+ .seg-list svg { width: 16px; height: 16px; flex: none; margin-top: 3px; stroke: var(--accent-deep); }
+ /* 4-spaltiges Preisraster wie auf preise.html */
+ .price-grid.pg-4 { grid-template-columns: repeat(4, 1fr); }
+ .price-grid.pg-4 .price-num { font-size: 2.1rem; }
+ .price-grid.pg-4 .price-card { padding: 32px 26px; }
+ @media (max-width: 1100px) { .price-grid.pg-4 { grid-template-columns: 1fr 1fr; max-width: 760px; margin: 0 auto; } }
+ @media (max-width: 640px) { .price-grid.pg-4 { grid-template-columns: 1fr; max-width: 460px; } }
+ .hero-note { font-size: .8rem; color: var(--text-dark-3); margin-top: 14px; }
+ /* Gesprächsverlauf im Browser-Rahmen */
+ .tx { display: grid; gap: 10px; padding: 22px 20px 24px; }
+ .tx .tx-label { font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+ .tx p { font-size: .88rem; line-height: 1.5; padding: 10px 14px; border-radius: 14px; max-width: 88%; margin: 0; }
+ .tx .ai { justify-self: start; background: rgba(230, 199, 106, .1); border: 1px solid rgba(230, 199, 106, .3); color: #fff; border-bottom-left-radius: 4px; }
+ .tx .caller { justify-self: end; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12); color: var(--text-dark-2); border-bottom-right-radius: 4px; }
+ .tx .result { justify-self: stretch; max-width: 100%; font-family: var(--mono); font-size: .76rem; color: #34d399; background: rgba(52, 211, 153, .08); border: 1px dashed rgba(52, 211, 153, .45); }
+ </style>
+
+ <!-- SEO:START -->
+ <link rel="canonical" href="https://ki-frank.github.io/ki-telefon-agent-v2/apotheken.html">
+ <meta name="robots" content="noindex,nofollow">
+ <meta name="theme-color" content="#0a0a0a">
+ <meta name="author" content="AI Voice Impact UG">
+ <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+ <link rel="apple-touch-icon" href="assets/img/favicon.svg">
+ <meta property="og:type" content="website">
+ <meta property="og:site_name" content="KI Telefon-Agent">
+ <meta property="og:locale" content="de_DE">
+ <meta property="og:url" content="https://ki-frank.github.io/ki-telefon-agent-v2/apotheken.html">
+ <meta property="og:title" content="KI-Telefonagent für Apotheken | KI Telefon-Agent">
+ <meta property="og:description" content="Der KI-Telefonagent für Apotheken: nimmt Vorbestellungen, Verfügbarkeitsanfragen und Botendienst-Wünsche an und entlastet das Team am HV-Tisch – die pharmazeutische Beratung bleibt beim Fachpersonal.">
+ <meta property="og:image" content="https://ki-frank.github.io/ki-telefon-agent-v2/assets/img/og-cover.jpg">
+ <meta property="og:image:alt" content="KI Telefon-Agent – Ihre KI-Rezeption für jede Branche">
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="KI-Telefonagent für Apotheken | KI Telefon-Agent">
+ <meta name="twitter:description" content="Der KI-Telefonagent für Apotheken: nimmt Vorbestellungen, Verfügbarkeitsanfragen und Botendienst-Wünsche an und entlastet das Team am HV-Tisch – die pharmazeutische Beratung bleibt beim Fachpersonal.">
+ <meta name="twitter:image" content="https://ki-frank.github.io/ki-telefon-agent-v2/assets/img/og-cover.jpg">
+ <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://ki-frank.github.io/ki-telefon-agent-v2/#org", "name": "KI Telefon-Agent", "legalName": "AI Voice Impact UG (haftungsbeschränkt)", "url": "https://ki-frank.github.io/ki-telefon-agent-v2/", "logo": "https://ki-frank.github.io/ki-telefon-agent-v2/assets/img/logo-new.svg", "email": "support@ki-telefon-agent.com", "telephone": "+49-40-74302560", "address": {"@type": "PostalAddress", "streetAddress": "Hohe Bleichen 8", "postalCode": "20354", "addressLocality": "Hamburg", "addressCountry": "DE"}}, {"@type": "WebPage", "@id": "https://ki-frank.github.io/ki-telefon-agent-v2/apotheken.html", "name": "KI-Telefonagent für Apotheken", "inLanguage": "de-DE", "publisher": {"@id": "https://ki-frank.github.io/ki-telefon-agent-v2/#org"}}]}</script>
+ <!-- SEO:END -->
+</head>
+<body>
+
+<!-- ======================== NAV ======================== -->
+<header class="nav">
+ <div class="nav-inner">
+ <a class="nav-logo" href="index.html"><img src="assets/img/logo-new.svg" alt="KI Telefon-Agent – AI Voice Impact"></a>
+ <ul class="nav-links">
+ <li><a href="so-funktionierts.html">So funktioniert's</a></li>
+ <li><a href="branchen.html">Branchen</a></li>
+ <li class="nav-drop">
+ <button class="nav-drop-btn" type="button">Lösungen
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+ </button>
+ <div class="nav-drop-menu">
+ <a href="use-cases.html"><strong>Anwendungsfälle</strong><span>Inbound, Outbound, Notdienst &amp; mehr</span></a>
+ <a href="onoffice.html"><strong>onOffice-Integration</strong><span>Die tiefste CRM-Anbindung für Makler</span></a>
+ <a href="custom.html"><strong>Custom-Integration</strong><span>HubSpot, Salesforce, Zapier &amp; 5.000+ Tools</span></a>
+ </div>
+ </li>
+ <li><a href="preise.html">Preise</a></li>
+ <li class="nav-drop">
+ <button class="nav-drop-btn" type="button">Ressourcen
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+ </button>
+ <div class="nav-drop-menu">
+ <a href="blog.html"><strong>Blog</strong><span>Guides zu KI-Telefonie &amp; DSGVO</span></a>
+ <a href="interview.html"><strong>Kunden-Interview</strong><span>Oliver Fründt über den Praxiseinsatz</span></a>
+ <a href="ueber-uns.html"><strong>Über uns</strong><span>Das Team hinter KI Telefon-Agent</span></a>
+ </div>
+ </li>
+ </ul>
+ <div class="nav-cta">
+ <a class="nav-phone" href="tel:+494074302560">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+ 040 – 7430 2560
+ </a>
+ <a class="btn btn-primary" href="termin.html">Strategiegespräch</a>
+ </div>
+ <button class="burger" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+ </div>
+</header>
+
+<nav class="mobile-menu">
+ <a href="so-funktionierts.html">So funktioniert's</a>
+ <a href="branchen.html">Branchen</a>
+ <div class="mm-group">Lösungen</div>
+ <a href="use-cases.html">Anwendungsfälle</a>
+ <a href="onoffice.html">onOffice-Integration</a>
+ <a href="custom.html">Custom-Integration</a>
+ <div class="mm-group">Mehr</div>
+ <a href="preise.html">Preise</a>
+ <a href="blog.html">Blog</a>
+ <a href="interview.html">Kunden-Interview</a>
+ <a href="ueber-uns.html">Über uns</a>
+ <a href="tel:+494074302560">📞 040 – 7430 2560</a>
+ <a class="btn btn-primary" href="termin.html">Strategiegespräch buchen</a>
+</nav>
+
+<!-- ======================== PAGE-HERO ======================== -->
+<section class="page-hero dots">
+ <div class="blob blob-cyan" style="width:460px;height:460px;top:-140px;right:-120px;"></div>
+ <div class="blob blob-blue" style="width:380px;height:380px;bottom:-160px;left:-140px;"></div>
+ <div class="container" style="position:relative;z-index:1">
+ <span class="pill">Vor-Ort-Apotheken · Filialverbünde · Heimversorgung</span>
+ <h1 class="h1">Beratung am HV-Tisch. <span class="grad-text">Das Telefon übernimmt die KI.</span></h1>
+ <p class="sub lead">Der KI-Telefonagent nimmt Vorbestellungen, Verfügbarkeitsanfragen, Botendienst-Wünsche und Fragen zu Öffnungszeiten an. Ihr Team muss nicht mehr ständig zwischen Kundschaft und Telefon wechseln – und die pharmazeutische Beratung bleibt bei Ihrem Fachpersonal.</p>
+ <div class="hero-ctas">
+ <a class="btn btn-primary btn-lg" href="termin.html">Apotheken-Demo vereinbaren</a>
+ <a class="btn btn-outline btn-lg" href="tel:+494074306953">
+ <i class="draw draw-t"></i><i class="draw draw-r"></i><i class="draw draw-b"></i><i class="draw draw-l"></i>
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+ Stimme live testen
+ </a>
+ </div>
+ <p class="hero-note">Die Testnummer zeigt Stimme und Reaktionszeit an einer Beispielrolle. Für Ihre Apotheke richten wir eine eigene Rolle ein.</p>
+ <div class="trust-badges trust-badges-top" style="margin-top:30px">
+ <img src="assets/img/badge-made-in-germany.png" alt="Made in Germany" loading="lazy">
+ <img src="assets/img/badge-eu-dsgvo.png" alt="EU-DSGVO-konform" loading="lazy">
+ </div>
+ </div>
+</section>
+
+<!-- ======================== ALLTAG IN DER APOTHEKE ======================== -->
+<section class="sec sec-light">
+ <div class="container">
+ <div class="sec-head rv">
+ <span class="pill">Der Alltag in der Offizin</span>
+ <h2 class="h2">Das Telefon klingelt – <span class="grad-text">mitten im Beratungsgespräch</span></h2>
+ <p class="sub lead">Kundschaft am HV-Tisch, Rezepte, Lieferungen und dazwischen das Telefon. Jede Unterbrechung kostet Zeit und Aufmerksamkeit.</p>
+ </div>
+ <div class="uc-grid rv">
+ <div class="uc-card">
+ <h3>Beratung oder Telefon?</h3>
+ <p>Wer ans Telefon geht, lässt die Kundschaft am HV-Tisch warten. Wer es klingeln lässt, verliert den Anrufer. Beides fühlt sich falsch an.</p>
+ </div>
+ <div class="uc-card">
+ <h3>Immer wieder dieselbe Frage</h3>
+ <p>„Ist mein Medikament da?", „Wann haben Sie heute geöffnet?", „Liefern Sie auch?" – Routinefragen, die das Team immer wieder aus der Beratung holen.</p>
+ </div>
+ <div class="uc-card">
+ <h3>Lieferengpässe binden Personal</h3>
+ <p>Ist ein Präparat nicht lieferbar, rufen Kundinnen und Kunden nach. Jede Rückfrage und jeder Rückruf bindet Personal, das vorne gebraucht wird.</p>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- ======================== AUFGABEN ======================== -->
+<section class="sec sec-gray">
+ <div class="container">
+ <div class="sec-head rv">
+ <span class="pill">Was der Agent übernimmt</span>
+ <h2 class="h2">Eine Agentenrolle, <span class="grad-text">die Ihre Apotheke kennt</span></h2>
+ <p class="sub lead">Öffnungszeiten, Filialen, Botendienst-Gebiete, Services und Weiterleitungsregeln: Wir richten den Agenten auf Ihre Apotheke ein.</p>
+ </div>
+ <div class="uc-grid ug-2 rv">
+ <div class="uc-card">
+ <h3>Vorbestellung &amp; Verfügbarkeit</h3>
+ <p>Der häufigste Anruf, vollständig aufgenommen – damit Ihr Team nur noch prüfen und zurückmelden muss.</p>
+ <ul class="seg-list">
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Präparat, Stärke und Packungsgröße aufnehmen</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Fragen, ob ein Rezept vorliegt – auf Papier oder als E-Rezept</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Rückrufnummer aufnehmen und zur Bestätigung vorlesen</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Als Aufgabe an das Team übergeben, das Bestand und Lieferbarkeit prüft</li>
+ </ul>
+ </div>
+ <div class="uc-card">
+ <h3>Botendienst</h3>
+ <p>Lieferwünsche strukturiert erfasst, statt auf Zetteln neben der Kasse.</p>
+ <ul class="seg-list">
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Lieferadresse und Wunschzeitfenster aufnehmen</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Liefergebiet und Lieferzeiten Ihrer Apotheke erklären</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Hinweis geben, dass das Rezept vor der Lieferung vorliegen muss</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Lieferwunsch als Aufgabe für die Tourenplanung ablegen</li>
+ </ul>
+ </div>
+ <div class="uc-card">
+ <h3>Services &amp; Termine</h3>
+ <p>Für alles, wofür Kundinnen und Kunden einen Termin brauchen.</p>
+ <ul class="seg-list">
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Termine für Impfungen, Blutdruckmessung oder Medikationsberatung aufnehmen</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Ihre Services und deren Ablauf erklären</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Öffnungszeiten, Anfahrt und Parkmöglichkeiten beantworten</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Außerhalb der Öffnungszeiten auf den Apotheken-Notdienst hinweisen</li>
+ </ul>
+ </div>
+ <div class="uc-card">
+ <h3>Filialen, Heime &amp; Praxen</h3>
+ <p>Mehr Standorte und Fachanfragen – ohne dass jeder Anruf in der Hauptapotheke landet.</p>
+ <ul class="seg-list">
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Eine Nummer für den Verbund, Weiterleitung an die gewünschte Filiale</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Rückfragen von Pflegeheimen strukturiert aufnehmen</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Anrufe von Arztpraxen direkt an die zuständige Person geben</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Über 100 Sprachen, Zusammenfassung für das Team auf Deutsch</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- ======================== DREI ANRUFE (SZENARIEN) ======================== -->
+<section class="sec sec-dark">
+ <div class="container">
+ <div class="sec-head rv">
+ <span class="pill">So läuft's am Telefon</span>
+ <h2 class="h2">Drei Anrufe, <span class="grad-text">die Ihr Team nicht mehr unterbrechen</span></h2>
+ <p class="sub lead">Spracherkennung in unter 270 ms, Antwort in unter 600 ms: Der Agent spricht natürlich, fragt nach, wenn etwas unklar ist, und gibt sich als KI-Assistent zu erkennen.</p>
+ </div>
+
+ <div class="journey-item">
+ <div class="j-copy rv">
+ <span class="pill">Dienstag, 9:10 Uhr</span>
+ <h3>Vorbestellung, während vorne beraten wird</h3>
+ <p>Eine Stammkundin möchte ihr Blutdruckmittel vorbestellen. Der Agent nimmt Präparat, Stärke, Packungsgröße und Rückrufnummer auf und fragt, ob das Rezept vorliegt. Ihr Team prüft den Bestand, sobald Zeit ist, und meldet sich zurück – die Beratung am HV-Tisch läuft ohne Unterbrechung weiter.</p>
+ <div class="j-chips">
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Vorbestellung erfasst</span>
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Rezeptstatus abgefragt</span>
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Aufgabe fürs Team</span>
+ </div>
+ </div>
+ <div class="j-media rv rv-d1">
+ <div class="browser-frame">
+ <div class="bf-bar"><i></i><i></i><i></i><span>ki-telefon-agent · vorbestellung</span></div>
+ <div class="bf-body">
+ <div class="tx">
+ <span class="tx-label">Gesprächsauszug (Beispiel)</span>
+ <p class="caller">Ich bräuchte wieder mein Ramipril, 5 Milligramm. Haben Sie das da?</p>
+ <p class="ai">Gern nehme ich das auf. Welche Packungsgröße steht auf Ihrem Rezept?</p>
+ <p class="caller">Die mit hundert Stück. Das Rezept ist auf meiner Karte.</p>
+ <p class="ai">Danke. Das Team prüft den Bestand und ruft Sie zurück. Ist die Nummer, von der Sie anrufen, richtig?</p>
+ <p class="result">✓ Aufgabe: Vorbestellung Ramipril 5 mg, N3 · E-Rezept · Rückruf</p>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div class="journey-item flip">
+ <div class="j-copy rv">
+ <span class="pill">Samstag, 18:45 Uhr</span>
+ <h3>Anruf nach Ladenschluss</h3>
+ <p>Ein Vater braucht am Abend dringend ein fiebersenkendes Mittel für sein Kind. Der Agent nennt die Öffnungszeiten und weist auf die Notdienst-Apotheke hin. Bei Anzeichen für einen Notfall verweist er sofort auf den Notruf 112 – statt dass der Anrufer ins Leere klingelt.</p>
+ <div class="j-chips">
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Öffnungszeiten genannt</span>
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Hinweis auf Notdienst</span>
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Bei Notfall: 112</span>
+ </div>
+ </div>
+ <div class="j-media rv rv-d1">
+ <div class="browser-frame">
+ <div class="bf-bar"><i></i><i></i><i></i><span>ki-telefon-agent · nach ladenschluss</span></div>
+ <div class="bf-body">
+ <div class="tx">
+ <span class="tx-label">Gesprächsauszug (Beispiel)</span>
+ <p class="caller">Haben Sie noch auf? Meine Tochter hat Fieber und wir haben nichts mehr da.</p>
+ <p class="ai">Wir haben heute leider schon geschlossen. Die nächste Notdienst-Apotheke finden Sie über den Apotheken-Notdienstfinder.</p>
+ <p class="ai">Wenn es Ihrer Tochter sehr schlecht geht, rufen Sie bitte sofort die 112 an.</p>
+ <p class="result">✓ Hinweis auf Notdienst gegeben · Anruf dokumentiert</p>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div class="journey-item">
+ <div class="j-copy rv">
+ <span class="pill">Donnerstag, 11:30 Uhr</span>
+ <h3>Eine Frage für das Fachpersonal</h3>
+ <p>Ein Kunde möchte wissen, ob er ein Schmerzmittel zusammen mit seinem Blutverdünner einnehmen darf. Der Agent gibt dazu bewusst keine Auskunft. Er verbindet mit dem pharmazeutischen Personal oder nimmt einen Rückrufwunsch auf – die Beratung bleibt dort, wo sie hingehört.</p>
+ <div class="j-chips">
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Keine pharmazeutische Beratung</span>
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Weiterleitung oder Rückruf</span>
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Anliegen dokumentiert</span>
+ </div>
+ </div>
+ <div class="j-media rv rv-d1">
+ <div class="browser-frame">
+ <div class="bf-bar"><i></i><i></i><i></i><span>ki-telefon-agent · beratungsfrage</span></div>
+ <div class="bf-body">
+ <div class="tx">
+ <span class="tx-label">Gesprächsauszug (Beispiel)</span>
+ <p class="caller">Darf ich Ibuprofen nehmen, obwohl ich einen Blutverdünner bekomme?</p>
+ <p class="ai">Dazu darf ich keine Auskunft geben, das gehört in die Beratung durch unser Fachpersonal.</p>
+ <p class="ai">Soll ich Sie direkt verbinden, oder möchten Sie einen Rückruf?</p>
+ <p class="result">✓ Weiterleitung an pharmazeutisches Personal angeboten</p>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- ======================== FUNKTIONEN (BENTO) ======================== -->
+<section class="sec sec-light">
+ <div class="container">
+ <div class="sec-head rv">
+ <span class="pill">Funktionen</span>
+ <h2 class="h2">Routineanrufe an die KI. <span class="grad-text">Die Beratung an Ihr Team.</span></h2>
+ <p class="sub lead">Der Agent ersetzt niemanden in der Offizin – er fängt ab, was sich wiederholt, und gibt alles andere mit vollständigem Kontext weiter.</p>
+ </div>
+ <div class="bento">
+ <div class="bento-card rv">
+ <span class="cat">Erreichbarkeit</span>
+ <h3>24/7 und im Überlauf</h3>
+ <p>Übernimmt rund um die Uhr, nur nach Ladenschluss oder erst, wenn die Leitung besetzt ist. Sie legen fest, wann.</p>
+ </div>
+ <div class="bento-card rv rv-d1">
+ <span class="cat">Vorbestellung</span>
+ <h3>Vollständig aufgenommen</h3>
+ <p>Präparat, Stärke, Packungsgröße, Rezeptstatus und Rückrufnummer – nichts fehlt, wenn das Team die Aufgabe übernimmt.</p>
+ </div>
+ <div class="bento-card rv rv-d2">
+ <span class="cat">Bestätigung</span>
+ <h3>Eingang per SMS</h3>
+ <p>Auf Wunsch bekommt die Kundschaft nach dem Anruf eine SMS, dass ihr Anliegen angekommen ist.</p>
+ </div>
+ <div class="bento-card rv">
+ <span class="cat">Lieferung</span>
+ <h3>Botendienst-Wünsche</h3>
+ <p>Adresse und Zeitfenster sauber erfasst und als Aufgabe abgelegt – bereit für die Tourenplanung.</p>
+ </div>
+ <div class="bento-card rv rv-d1">
+ <span class="cat">Team</span>
+ <h3>Warme Weiterleitung</h3>
+ <p>Beratungsfragen gehen direkt an das Fachpersonal, inklusive gesprochener Zusammenfassung. Niemand muss von vorn fragen.</p>
+ </div>
+ <div class="bento-card rv rv-d2">
+ <span class="cat">Verbund</span>
+ <h3>Filialen richtig verbinden</h3>
+ <p>Eine Nummer für den ganzen Verbund. Der Agent fragt nach der gewünschten Filiale und leitet weiter.</p>
+ </div>
+ <div class="bento-card rv">
+ <span class="cat">Sprachen</span>
+ <h3>Über 100 Sprachen</h3>
+ <p>Erkennt die Sprache automatisch und wechselt mitten im Gespräch. Die Zusammenfassung für Ihr Team bleibt auf Deutsch.</p>
+ </div>
+ <div class="bento-card rv rv-d1">
+ <span class="cat">Anbindung</span>
+ <h3>Passend zu Ihren Systemen</h3>
+ <p>Über Schnittstelle, Webhook oder Zapier mit über 5.000 Tools. Ob sich Ihre Warenwirtschaft anbinden lässt, prüfen wir im Gespräch.</p>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- ======================== VERGLEICH ======================== -->
+<section class="sec sec-gray">
+ <div class="container">
+ <div class="sec-head rv">
+ <span class="pill">Der Unterschied</span>
+ <h2 class="h2">Klingeln lassen oder <span class="grad-text">KI Telefon-Agent?</span></h2>
+ </div>
+ <div class="vs-grid">
+ <div class="vs-card vs-bad rv">
+ <h3>Besetzt, Anrufbeantworter, Unterbrechung</h3>
+ <ul>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Beratung am HV-Tisch wird für jeden Anruf unterbrochen</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Vorbestellungen auf Zetteln, Angaben oft unvollständig</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Nach Ladenschluss klingelt es ins Leere</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Rückrufnummern schwer verständlich auf dem Anrufbeantworter</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Fremdsprachige Kundschaft bleibt ohne Hilfe</li>
+ </ul>
+ </div>
+ <div class="vs-card vs-good rv rv-d1">
+ <h3><img src="assets/img/logo-new-mark.svg" alt="" style="width:30px;height:30px">KI Telefon-Agent</h3>
+ <ul>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Das Team berät vorne ohne Unterbrechung</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Vorbestellungen vollständig und einheitlich erfasst</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Nach Ladenschluss: Öffnungszeiten und Hinweis auf den Notdienst</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Rückrufnummer wird zur Bestätigung vorgelesen</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Über 100 Sprachen, Zusammenfassung auf Deutsch</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- ======================== DATENSCHUTZ & GRENZEN ======================== -->
+<section class="sec sec-dark">
+ <div class="container" style="margin-bottom:52px">
+ <p class="compliance-note rv" style="text-align:center">
+ <b>BDSG-konform</b> · <b>EU AI Act konform</b> · <b>TÜV-NORD-zertifizierter Datenschutzbeauftragter</b> · <b>AVV standardmäßig enthalten</b>
+ </p>
+ </div>
+ <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center" id="security-grid">
+ <div class="rv">
+ <span class="pill">Datenschutz &amp; Verantwortung</span>
+ <h2 class="h2" style="margin-bottom:16px">Arzneimittel-Anfragen <span class="grad-text">sind Gesundheitsdaten</span></h2>
+ <p class="sub" style="margin-bottom:30px">Wer ein Medikament vorbestellt, verrät etwas über seine Gesundheit – diese Daten sind nach Art. 9 DSGVO besonders geschützt. Deshalb läuft der Agent in der EU-Region Frankfurt, verschlüsselt nach AES-256, und fragt nur ab, was für das Anliegen nötig ist.</p>
+ <div class="stat-grid">
+ <div class="stat-card rv"><b>ISO 27001</b><span>Zertifizierte Server (AWS Frankfurt)</span></div>
+ <div class="stat-card rv rv-d1"><b>AES-256</b><span>Verschlüsselung (Transit + Rest)</span></div>
+ <div class="stat-card rv rv-d2"><b>EU-Region Frankfurt</b><span>Datenresidenz-Garantie</span></div>
+ <div class="stat-card rv rv-d3"><b><span data-count="99.9" data-suffix=" %">0</span></b><span>Uptime-Garantie (SLA)</span></div>
+ </div>
+ </div>
+ <div class="vs-card vs-good rv rv-d1">
+ <h3>Was der Agent bewusst nicht tut</h3>
+ <ul>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Keine pharmazeutische Beratung zu Wechselwirkungen, Dosierung oder Anwendung</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Keine Empfehlung, welches Mittel jemand nehmen soll</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Keine Zusage zur Verfügbarkeit, bevor Ihr Team geprüft hat</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Kein Verschweigen, dass eine KI spricht</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Keine Abfrage von Daten, die für das Anliegen nicht nötig sind</li>
+ </ul>
+ </div>
+ </div>
+</section>
+
+<!-- ======================== EINRICHTUNG (3 SCHRITTE) ======================== -->
+<section class="sec sec-light">
+ <div class="container">
+ <div class="sec-head rv">
+ <span class="pill">In 3 Schritten live</span>
+ <h2 class="h2">Ihre Nummer bleibt. <span class="grad-text">Ihr HV-Tisch wird entlastet.</span></h2>
+ <p class="sub lead">Keine neue Hardware, keine neue Telefonanlage. Wir übernehmen die Einrichtung und testen alles, bevor der erste Kunde anruft.</p>
+ </div>
+ <div class="steps">
+ <div class="step rv"><h3>Rufumleitung einrichten</h3><p>Anrufe gehen bei Besetzt, nach mehrmaligem Klingeln oder nach Ladenschluss an den Agenten. Ihre Apothekennummer bleibt unverändert.</p></div>
+ <div class="step rv rv-d1"><h3>Rolle für Ihre Apotheke</h3><p>Öffnungszeiten, Filialen, Services, Botendienst und Weiterleitungsregeln – wir konfigurieren den Agenten und testen ihn mit Ihnen.</p></div>
+ <div class="step rv rv-d2"><h3>Live gehen</h3><p>Das technische Setup dauert unter 5 Minuten. Mit Rolle und persönlichem Onboarding sind Sie in wenigen Tagen live.</p></div>
+ </div>
+ </div>
+</section>
+
+<!-- ======================== PREISE ======================== -->
+<section class="sec sec-dark dots" id="preise">
+ <div class="container">
+ <div class="sec-head rv">
+ <span class="pill">Preise</span>
+ <h2 class="h2">Transparent, <span class="grad-text">monatlich kündbar</span></h2>
+ <p class="sub lead">Abrechnung im 30-Sekunden-Takt. Sie zahlen für Gesprächsminuten, nicht für zusätzliches Personal.</p>
+ </div>
+ <div class="price-grid pg-4">
+ <div class="price-card rv">
+ <h3>Start</h3>
+ <p class="for">Zum Testen &amp; für wenig Volumen</p>
+ <div class="price-num">39 €<small> / Monat</small></div>
+ <ul>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>100 Freiminuten inklusive</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Inbound &amp; Outbound</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>24/7 Erreichbarkeit</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Danach 0,29 €/Min.</li>
+ </ul>
+ </div>
+ <div class="price-card rv rv-d1">
+ <h3>Smart</h3>
+ <p class="for">Für kleine Teams</p>
+ <div class="price-num">199 €<small> / Monat</small></div>
+ <ul>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>600 Freiminuten inklusive</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Inbound &amp; Outbound</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>24/7 Erreichbarkeit</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Danach 0,25 €/Min.</li>
+ </ul>
+ </div>
+ <div class="price-card hot rv rv-d2">
+ <span class="price-flag">Beliebteste Wahl</span>
+ <h3>Pro</h3>
+ <p class="for">Für wachsende Unternehmen</p>
+ <div class="price-num">599 €<small> / Monat</small></div>
+ <ul>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>1.800 Freiminuten inklusive</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Inbound &amp; Outbound</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>24/7 Erreichbarkeit</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Danach 0,22 €/Min.</li>
+ </ul>
+ </div>
+ <div class="price-card rv rv-d3">
+ <h3>Enterprise</h3>
+ <p class="for">Für hohes Anrufvolumen</p>
+ <div class="price-num">1.299 €<small> / Monat</small></div>
+ <ul>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>4.000 Freiminuten inklusive</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Inbound &amp; Outbound</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>24/7 Erreichbarkeit</li>
+ <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Danach 0,19 €/Min.</li>
+ </ul>
+ </div>
+ </div>
+ <p class="price-note rv">Alle Preise zzgl. MwSt. · Abrechnung im 30-Sekunden-Takt · Monatlich kündbar<br>Einmalig: Grundsetup 499 € · Maßgeschneiderte Agentenrolle 799 €<br><a href="preise.html" style="color:var(--accent)">Alle Tarife im Detail ansehen →</a></p>
+ </div>
+</section>
+
+<!-- ======================== FAQ ======================== -->
+<section class="sec sec-light">
+ <div class="container">
+ <div class="sec-head rv">
+ <span class="pill">FAQ</span>
+ <h2 class="h2">Die Fragen, die Apotheken zuerst stellen</h2>
+ <p class="sub">Ehrliche Antworten – auch auf die kritischen.</p>
+ </div>
+ <div class="faq rv">
+ <details class="faq-item">
+ <summary>Berät die KI zu Arzneimitteln?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></summary>
+ <div class="faq-body">Nein. Fragen zu Wechselwirkungen, Dosierung, Anwendung oder zur Auswahl eines Mittels beantwortet der Agent nicht. Er verbindet mit Ihrem pharmazeutischen Personal oder nimmt einen Rückrufwunsch auf. Die Beratung bleibt vollständig bei Ihrem Fachpersonal.</div>
+ </details>
+ <details class="faq-item">
+ <summary>Kann der Agent prüfen, ob ein Medikament vorrätig ist?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></summary>
+ <div class="faq-body">Nur, wenn sich Ihre Warenwirtschaft per Schnittstelle anbinden lässt – das prüfen wir im Strategiegespräch. Ohne Anbindung nimmt der Agent die Anfrage vollständig auf und legt sie als Aufgabe ab. Ihr Team prüft den Bestand und meldet sich zurück. Eine Zusage zur Verfügbarkeit gibt der Agent in diesem Fall nicht.</div>
+ </details>
+ <details class="faq-item">
+ <summary>Was ist mit E-Rezepten?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></summary>
+ <div class="faq-body">Der Agent kann E-Rezepte weder einsehen noch einlösen. Er fragt, ob ein Rezept vorliegt und in welcher Form, und nimmt die Vorbestellung auf. Eingelöst wird das E-Rezept wie gewohnt in Ihrer Apotheke – per Gesundheitskarte, App oder Ausdruck.</div>
+ </details>
+ <details class="faq-item">
+ <summary>Was sagt der Agent nach Ladenschluss?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></summary>
+ <div class="faq-body">Er nennt Ihre Öffnungszeiten und weist auf den Apotheken-Notdienst hin. Schildert jemand Anzeichen für einen medizinischen Notfall, verweist er sofort auf den Notruf 112. Wie genau er reagiert und welche Hinweise er gibt, legen wir gemeinsam mit Ihnen in der Agentenrolle fest.</div>
+ </details>
+ <details class="faq-item">
+ <summary>Ist das DSGVO-konform, wenn Medikamente genannt werden?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></summary>
+ <div class="faq-body">Die Verarbeitung läuft in der EU-Region Frankfurt, verschlüsselt nach AES-256, mit Auftragsverarbeitungsvertrag und einem TÜV-NORD-zertifizierten Datenschutzbeauftragten. Weil Angaben zu Arzneimitteln Gesundheitsdaten sind, stellen wir den Agenten datensparsam ein: Er fragt nur ab, was für Vorbestellung, Lieferung oder Rückruf nötig ist. Vor dem Start stimmen wir die Einrichtung mit Ihnen und Ihrem Datenschutzbeauftragten ab.</div>
+ </details>
+ <details class="faq-item">
+ <summary>Behalten wir unsere Telefonnummer?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></summary>
+ <div class="faq-body">Ja. Sie leiten Anrufe per Rufumleitung weiter – zum Beispiel nur bei Besetzt, nach mehrmaligem Klingeln oder nach Ladenschluss. Auch eine SIP-Trunk-Anbindung ist möglich.</div>
+ </details>
+ <details class="faq-item">
+ <summary>Funktioniert das für einen Filialverbund?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></summary>
+ <div class="faq-body">Ja. Der Agent kann für jede Filiale eigene Öffnungszeiten und Services kennen, fragt nach der gewünschten Filiale und leitet dorthin weiter. Welche Weiterleitungen sinnvoll sind, legen wir bei der Einrichtung mit Ihnen fest.</div>
+ </details>
+ </div>
+ </div>
+</section>
+
+<!-- ======================== FINAL CTA ======================== -->
+<section class="final-cta">
+ <div class="rv">
+ <h2 class="h2">Ihr Team berät. Die KI geht ans Telefon.</h2>
+ <p class="sub">Lassen Sie sich im Strategiegespräch zeigen, wie der Agent für Ihre Apotheke klingt – oder testen Sie die Stimme gleich selbst am Telefon.</p>
+ <div class="hero-ctas">
+ <a class="btn btn-primary btn-lg" href="termin.html">Apotheken-Demo vereinbaren</a>
+ <a class="btn btn-outline btn-lg" href="tel:+494074306953">
+ <i class="draw draw-t"></i><i class="draw draw-r"></i><i class="draw draw-b"></i><i class="draw draw-l"></i>
+ 040 – 743 069 53 anrufen
+ </a>
+ </div>
+ </div>
+</section>
+
+<!-- ======================== FOOTER ======================== -->
+<footer class="footer">
+ <div class="container">
+ <div class="footer-grid">
+ <div class="footer-brand">
+ <img src="assets/img/logo-new.svg" alt="KI Telefon-Agent">
+ <p>Der KI-Telefonassistent der nächsten Generation – für Unternehmen, die keinen Anruf mehr verpassen wollen. Made in Hamburg.</p>
+ <div class="footer-badges">
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>In der EU gehostet</span>
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>EU AI Act konform</span>
+ <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>DSGVO-konform</span>
+ </div>
+ </div>
+ <div>
+ <h4>Produkt</h4>
+ <ul>
+ <li><a href="so-funktionierts.html">So funktioniert's</a></li>
+ <li><a href="branchen.html">Branchen</a></li>
+ <li><a href="use-cases.html">Anwendungsfälle</a></li>
+ <li><a href="preise.html">Preise</a></li>
+ <li><a href="termin.html">Live-Demo</a></li>
+ </ul>
+ </div>
+ <div>
+ <h4>Integrationen</h4>
+ <ul>
+ <li><a href="onoffice.html">onOffice</a></li>
+ <li><a href="custom.html">HubSpot &amp; Salesforce</a></li>
+ <li><a href="custom.html">Zapier (5.000+ Tools)</a></li>
+ <li><a href="custom.html">Custom-CRM</a></li>
+ </ul>
+ </div>
+ <div>
+ <h4>Unternehmen</h4>
+ <ul>
+ <li><a href="ueber-uns.html">Über uns</a></li>
+ <li><a href="blog.html">Blog</a></li>
+ <li><a href="interview.html">Kunden-Interview</a></li>
+ <li><a href="termin.html">Kontakt &amp; Termin</a></li>
+ </ul>
+ </div>
+ <div>
+ <h4>Kontakt</h4>
+ <ul>
+ <li><a href="tel:+494074302560">040 – 7430 2560</a></li>
+ <li><a href="mailto:support@ki-telefon-agent.com">support@ki-telefon-agent.com</a></li>
+ <li><a href="ueber-uns.html">Hohe Bleichen 8<br>20354 Hamburg</a></li>
+ </ul>
+ <h4 style="margin-top:22px">Rechtliches</h4>
+ <ul>
+ <li><a href="impressum.html">Impressum</a></li>
+ <li><a href="datenschutz.html">Datenschutz</a></li>
+ <li><a href="agb.html">AGB</a></li>
+ <li><a href="avv.html">AVV</a></li>
+ </ul>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <span>© 2026 AI Voice Impact UG (haftungsbeschränkt). Alle Rechte vorbehalten.</span>
+ <span>Amtsgericht Hamburg · HRB 195056</span>
+ </div>
+ <span class="footer-giant">KI TELEFON-AGENT</span>
+ </div>
+</footer>
+
+<!-- ======================== COOKIE-BANNER ======================== -->
+<div class="cookie-banner" id="cookieBanner">
+ <p><b style="color:#fff">Cookies &amp; Datenschutz.</b> Wir verwenden Cookies für Analyse und Marketing (Google Analytics, Meta-Pixel, Microsoft Clarity). Details in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+ <div class="cookie-actions">
+ <button class="btn btn-primary btn-sm" onclick="cookieChoice(true)">Alle akzeptieren</button>
+ <button class="btn btn-ghost btn-sm" onclick="cookieChoice(false)">Nur essenzielle</button>
+ </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

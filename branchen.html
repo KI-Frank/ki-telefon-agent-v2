@@ -9,6 +9,12 @@
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@500;600;700&display=swap" rel="stylesheet">
  <link rel="stylesheet" href="assets/css/styles.css">
+ <style>
+ /* Seiten-spezifisch: ganze Branchen-Karte ist klickbar, wenn sie eine eigene Landingpage hat */
+ .uc-card.is-link .link-arrow { position: static; display: inline-flex; }
+ .uc-card.is-link .link-arrow::before { content: ""; position: absolute; inset: 0; z-index: 2; }
+ .uc-card.is-link:focus-within { outline: 2px solid var(--accent-deep); outline-offset: 3px; }
+ </style>
 
  <!-- SEO:START -->
  <link rel="canonical" href="https://itisrob.github.io/ki-telefon-agent-v2/branchen.html">
@@ -246,31 +252,40 @@
  <div class="sec-head rv">
  <span class="pill">04 · Gesundheit</span>
  <h2 class="h2">Mehr Zeit für <span class="grad-text">Patienten statt Telefon</span></h2>
- <p class="sub lead">Praxen und Kliniken versinken im Anrufaufkommen. Der KI-Telefonagent nimmt Terminwünsche und Rückfragen entgegen, entlastet den Empfang und hält die Leitung frei für echte Notfälle.</p>
+ <p class="sub lead">Praxen, Kliniken und Apotheken versinken im Anrufaufkommen. Der KI-Telefonagent nimmt Terminwünsche, Vorbestellungen und Rückfragen entgegen, entlastet Empfang und HV-Tisch und hält die Leitung frei für echte Notfälle.</p>
  </div>
- <div class="uc-grid rv">
- <div class="uc-card">
+ <div class="uc-grid uc-grid-center rv">
+ <div class="uc-card is-link">
  <img src="assets/img/branchen/arztpraxen-1.jpg" alt="KI-Telefonagent für Arztpraxen" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;margin-bottom:16px">
  <h3>Arztpraxen</h3>
  <p>So entlastet der KI-Telefonagent die Praxis: Er nimmt Terminwünsche entgegen, beantwortet organisatorische Fragen und hält den Empfang frei für die Patienten vor Ort.</p>
+ <a class="link-arrow" href="gesundheit.html">Zur Landingpage für Praxen &amp; Kliniken →</a>
  </div>
- <div class="uc-card">
+ <div class="uc-card is-link">
  <img src="assets/img/branchen/privatkliniken-2.jpg" alt="KI-Telefonagent für Privatkliniken" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;margin-bottom:16px">
  <h3>Privatkliniken</h3>
  <p>So entlastet der KI-Telefonagent die Klinik: Er nimmt Anfragen zu Behandlungen und Aufnahmen strukturiert auf und leitet dringende Fälle sofort weiter.</p>
+ <a class="link-arrow" href="gesundheit.html">Zur Landingpage für Praxen &amp; Kliniken →</a>
  </div>
- <div class="uc-card">
+ <div class="uc-card is-link">
  <img src="assets/img/branchen/therapiezentren-3.jpg" alt="KI-Telefonagent für Therapiezentren" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;margin-bottom:16px">
  <h3>Therapiezentren</h3>
  <p>So entlastet der KI-Telefonagent das Therapiezentrum: Er koordiniert Termine, führt Wartelisten und meldet sich bei Absagen automatisch beim nächsten Patienten.</p>
+ <a class="link-arrow" href="gesundheit.html">Zur Landingpage für Praxen &amp; Kliniken →</a>
  </div>
- <div class="uc-card">
+ <div class="uc-card is-link">
  <img src="assets/img/branchen/gesundheitsdienstleister-1.jpg" alt="KI-Telefonagent für Gesundheitsdienstleister" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;margin-bottom:16px">
  <h3>Gesundheitsdienstleister</h3>
  <p>So entlastet der KI-Telefonagent den Dienstleister: Er nimmt Anfragen rund um Leistungen und Termine an und dokumentiert jedes Anliegen sauber im System.</p>
+ <a class="link-arrow" href="gesundheit.html">Zur Landingpage für Praxen &amp; Kliniken →</a>
+ </div>
+ <div class="uc-card is-link">
+ <img src="assets/img/branchen/apotheken-1.svg" alt="KI-Telefonagent für Apotheken" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;margin-bottom:16px">
+ <h3>Apotheken</h3>
+ <p>So entlastet der KI-Telefonagent die Apotheke: Er nimmt Vorbestellungen und Verfügbarkeitsanfragen entgegen, beantwortet Fragen zu Öffnungszeiten und Botendienst und hält das Team am HV-Tisch frei für die Beratung.</p>
+ <a class="link-arrow" href="apotheken.html">Zur Landingpage für Apotheken →</a>
  </div>
  </div>
- <div class="center rv" style="margin-top:34px"><a class="link-arrow" href="gesundheit.html">Mehr zum KI-Telefonagenten für Praxen, Kliniken &amp; Therapiezentren →</a></div>
  </div>
 </section>
 

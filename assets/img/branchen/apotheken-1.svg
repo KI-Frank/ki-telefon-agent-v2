@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t">
+  <title id="t">Illustration: Apothekenregal mit Arzneimittelpackungen und eingehendem Anruf</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#15120b"/>
+      <stop offset="1" stop-color="#05070c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.72" cy="0.38" r="0.55">
+      <stop offset="0" stop-color="#e6c76a" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#e6c76a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f3dc92"/>
+      <stop offset="1" stop-color="#b8902f"/>
+    </linearGradient>
+    <linearGradient id="shelf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a2418"/>
+      <stop offset="1" stop-color="#17140e"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+
+  <!-- Regal -->
+  <g opacity="0.95">
+    <rect x="110" y="120" width="760" height="660" rx="26" fill="url(#shelf)" stroke="#3a3222" stroke-width="3"/>
+    <rect x="130" y="325" width="720" height="14" rx="7" fill="#4a3f2a"/>
+    <rect x="130" y="535" width="720" height="14" rx="7" fill="#4a3f2a"/>
+    <rect x="130" y="745" width="720" height="14" rx="7" fill="#4a3f2a"/>
+
+    <!-- Reihe 1 -->
+    <rect x="165" y="205" width="92" height="120" rx="8" fill="#f4f1ea"/><rect x="165" y="238" width="92" height="22" fill="#e6c76a"/>
+    <rect x="272" y="185" width="74" height="140" rx="8" fill="#dfe8f1"/><rect x="272" y="222" width="74" height="18" fill="#5b8def"/>
+    <rect x="361" y="215" width="110" height="110" rx="8" fill="#f4f1ea"/><rect x="361" y="246" width="110" height="16" fill="#34d399"/>
+    <rect x="486" y="195" width="80" height="130" rx="8" fill="#efe6d2"/><rect x="486" y="232" width="80" height="20" fill="#b8902f"/>
+    <g transform="translate(598 170)"><rect x="0" y="40" width="70" height="115" rx="16" fill="#8a5a2b"/><rect x="10" y="18" width="50" height="28" rx="6" fill="#e9e3d6"/><rect x="8" y="78" width="54" height="40" rx="4" fill="#f4f1ea"/></g>
+    <rect x="690" y="208" width="130" height="117" rx="8" fill="#dfe8f1"/><rect x="690" y="240" width="130" height="18" fill="#e6c76a"/>
+
+    <!-- Reihe 2 -->
+    <rect x="165" y="410" width="120" height="125" rx="8" fill="#efe6d2"/><rect x="165" y="444" width="120" height="18" fill="#5b8def"/>
+    <rect x="300" y="395" width="84" height="140" rx="8" fill="#f4f1ea"/><rect x="300" y="430" width="84" height="22" fill="#34d399"/>
+    <g transform="translate(404 380)"><rect x="0" y="36" width="64" height="119" rx="14" fill="#6b4b8a"/><rect x="9" y="16" width="46" height="26" rx="6" fill="#e9e3d6"/><rect x="7" y="74" width="50" height="38" rx="4" fill="#f4f1ea"/></g>
+    <rect x="490" y="420" width="104" height="115" rx="8" fill="#dfe8f1"/><rect x="490" y="452" width="104" height="18" fill="#b8902f"/>
+    <rect x="610" y="400" width="92" height="135" rx="8" fill="#f4f1ea"/><rect x="610" y="436" width="92" height="20" fill="#e6c76a"/>
+    <rect x="718" y="425" width="102" height="110" rx="8" fill="#efe6d2"/><rect x="718" y="456" width="102" height="16" fill="#34d399"/>
+
+    <!-- Reihe 3 -->
+    <rect x="165" y="615" width="98" height="130" rx="8" fill="#dfe8f1"/><rect x="165" y="650" width="98" height="20" fill="#e6c76a"/>
+    <rect x="278" y="630" width="128" height="115" rx="8" fill="#f4f1ea"/><rect x="278" y="662" width="128" height="18" fill="#5b8def"/>
+    <rect x="421" y="600" width="80" height="145" rx="8" fill="#efe6d2"/><rect x="421" y="640" width="80" height="22" fill="#34d399"/>
+    <g transform="translate(520 590)"><rect x="0" y="38" width="68" height="117" rx="15" fill="#2f6f5e"/><rect x="10" y="17" width="48" height="27" rx="6" fill="#e9e3d6"/><rect x="8" y="76" width="52" height="38" rx="4" fill="#f4f1ea"/></g>
+    <rect x="608" y="622" width="112" height="123" rx="8" fill="#f4f1ea"/><rect x="608" y="655" width="112" height="18" fill="#b8902f"/>
+    <rect x="735" y="640" width="85" height="105" rx="8" fill="#dfe8f1"/><rect x="735" y="670" width="85" height="16" fill="#e6c76a"/>
+  </g>
+
+  <!-- Kapsel -->
+  <g transform="translate(975 640) rotate(-28)">
+    <rect x="0" y="0" width="230" height="92" rx="46" fill="#f4f1ea"/>
+    <path d="M115 0h69a46 46 0 0 1 0 92h-69z" fill="url(#gold)"/>
+    <rect x="18" y="16" width="80" height="14" rx="7" fill="#ffffff" opacity="0.7"/>
+  </g>
+
+  <!-- Anruf-Karte -->
+  <g transform="translate(1000 190)">
+    <rect x="0" y="0" width="470" height="330" rx="34" fill="#0d0c09" stroke="#e6c76a" stroke-opacity="0.55" stroke-width="3"/>
+    <circle cx="96" cy="112" r="56" fill="url(#gold)"/>
+    <path d="M118 131v12a8 8 0 0 1-8.7 8 79 79 0 0 1-34.5-12.3 78 78 0 0 1-24-24A79 79 0 0 1 38.5 80.2 8 8 0 0 1 46.5 71.5h12a8 8 0 0 1 8 6.9c.5 3.8 1.4 7.6 2.8 11.2a8 8 0 0 1-1.8 8.4l-5.1 5.1a64 64 0 0 0 24 24l5.1-5.1a8 8 0 0 1 8.4-1.8c3.6 1.4 7.4 2.3 11.2 2.8a8 8 0 0 1 6.9 8.1z" fill="#15120b" transform="translate(-6 0)"/>
+    <rect x="180" y="84" width="220" height="22" rx="11" fill="#f4f1ea" opacity="0.9"/>
+    <rect x="180" y="122" width="150" height="18" rx="9" fill="#f4f1ea" opacity="0.45"/>
+    <g fill="none" stroke="#e6c76a" stroke-width="6" stroke-linecap="round">
+      <path d="M60 222h28"/><path d="M108 206v32"/><path d="M128 196v52"/><path d="M148 210v24"/><path d="M168 190v64"/><path d="M188 202v40"/><path d="M208 214v16"/><path d="M228 198v48"/><path d="M248 208v28"/><path d="M268 216v12"/>
+    </g>
+    <rect x="300" y="200" width="118" height="44" rx="22" fill="#34d399" opacity="0.18" stroke="#34d399" stroke-opacity="0.6" stroke-width="2"/>
+    <circle cx="324" cy="222" r="7" fill="#34d399"/>
+    <rect x="340" y="215" width="60" height="14" rx="7" fill="#34d399" opacity="0.8"/>
+  </g>
+</svg>
