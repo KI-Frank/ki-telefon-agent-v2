@@ -998,6 +998,7 @@ h1, h2, h3, h4 { font-weight: 700; line-height: 1.15; letter-spacing: -.02em; }
 .author-box { display: flex; align-items: center; gap: 16px; margin: 40px 0 8px;
   padding: 20px 22px; border: 1px solid var(--card-light-border); border-radius: var(--r-lg); background: var(--light-bg); }
 .author-box img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; flex: none; }
+.author-box img.author-logo { border-radius: 14px; object-fit: contain; background: #fff; border: 1px solid var(--card-light-border); padding: 9px; }
 .author-box b { display: block; font-size: 1rem; color: var(--text-light-1); }
 .author-box span { font-size: .85rem; color: var(--text-light-3); }
 
