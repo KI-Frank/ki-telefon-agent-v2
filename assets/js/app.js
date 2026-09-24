@@ -192,6 +192,22 @@
     window.gtag = function () { window.dataLayer.push(arguments); };
     window.gtag('js', new Date());
     window.gtag('config', GA4_ID, { anonymize_ip: true });
+
+    /* OpenAI-Pixel: misst, welche Besucher ueber ChatGPT-Anzeigen kommen.
+       Laedt wie GA4 erst nach ausdruecklicher Einwilligung. */
+    var OAI_PIXEL_ID = '9m8bBsHYdyTSEwsJH9WybV';
+    (function (w, d, s, u) {
+      if (w.oaiq) return;
+      var q = function () { q.q.push(arguments); };
+      q.q = [];
+      w.oaiq = q;
+      var j = d.createElement(s);
+      j.async = 1;
+      j.src = u;
+      var f = d.getElementsByTagName(s)[0];
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'https://bzrcdn.openai.com/sdk/oaiq.min.js');
+    window.oaiq('init', { pixelId: OAI_PIXEL_ID });
   }
 
   /* ---------- E-Mail-Adressen erst im Browser zusammensetzen (Schutz vor Adress-Sammlern) ---------- */
