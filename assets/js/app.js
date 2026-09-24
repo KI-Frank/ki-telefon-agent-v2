@@ -355,3 +355,54 @@
     }, 5000);
   });
 })();
+
+/* ============================ KONTAKTFORMULAR ============================
+   Sendet ohne Seitenwechsel und zeigt die Bestaetigung an Ort und Stelle.
+   Ohne JavaScript greift der normale POST auf kontakt/senden.php. */
+(function () {
+  document.querySelectorAll('form.kontakt-form').forEach(function (formular) {
+    var start = formular.querySelector('input[name="gestartet"]');
+    if (start) { start.value = String(Date.now()); }
+
+    var fehlerfeld = formular.querySelector('.form-fehler');
+    var knopf = formular.querySelector('button[type="submit"]');
+    var knopftext = knopf ? knopf.textContent : '';
+
+    function zeigeFehler(text) {
+      if (!fehlerfeld) { window.alert(text); return; }
+      fehlerfeld.textContent = text;
+      fehlerfeld.hidden = false;
+    }
+
+    formular.addEventListener('submit', function (ereignis) {
+      if (!formular.checkValidity()) { formular.reportValidity(); ereignis.preventDefault(); return; }
+      ereignis.preventDefault();
+      if (fehlerfeld) { fehlerfeld.hidden = true; }
+      if (knopf) { knopf.disabled = true; knopf.textContent = 'Wird gesendet …'; }
+
+      fetch(formular.getAttribute('action'), {
+        method: 'POST',
+        body: new FormData(formular),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then(function (antwort) { return antwort.json(); })
+        .then(function (ergebnis) {
+          if (!ergebnis || !ergebnis.ok) {
+            throw new Error((ergebnis && ergebnis.meldung) || 'Unbekannter Fehler');
+          }
+          var box = document.getElementById(formular.dataset.erfolg);
+          formular.hidden = true;
+          if (box) {
+            box.classList.add('on');
+            box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        })
+        .catch(function (fehler) {
+          if (knopf) { knopf.disabled = false; knopf.textContent = knopftext; }
+          zeigeFehler(fehler.message && fehler.message !== 'Failed to fetch'
+            ? fehler.message
+            : 'Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder rufen Sie uns an: 040 – 7430 2560.');
+        });
+    });
+  });
+})();

@@ -162,6 +162,58 @@
  </div>
 </section>
 
+<!-- ======================== KURZ-KONTAKT ======================== -->
+<section class="sec sec-light" id="nachricht">
+ <div class="container">
+ <div class="sec-head rv">
+ <span class="pill">Schreiben statt sprechen</span>
+ <h2 class="h2">Passt gerade kein Termin? <span class="grad-text">Schreiben Sie uns.</span></h2>
+ <p class="sub">Kurz das Anliegen schildern – wir melden uns in der Regel innerhalb eines Werktags zurück.</p>
+ </div>
+ <div class="form-card rv" style="max-width:720px;margin:0 auto">
+  <form class="kontakt-form" action="/kontakt/senden.php" method="post" data-erfolg="terminErfolg" novalidate>
+   <input type="hidden" name="seite" value="/termin/">
+   <input type="hidden" name="thema" value="Anfrage über Terminseite">
+   <input type="hidden" name="gestartet" value="">
+   <div class="form-grid">
+    <div class="field">
+     <label for="tf-name">Name *</label>
+     <input id="tf-name" name="name" type="text" autocomplete="name" maxlength="120" required>
+    </div>
+    <div class="field">
+     <label for="tf-email">E-Mail *</label>
+     <input id="tf-email" name="email" type="email" autocomplete="email" maxlength="180" required>
+    </div>
+    <div class="field full">
+     <label for="tf-telefon">Telefon (damit wir schneller zurückrufen können)</label>
+     <input id="tf-telefon" name="telefon" type="tel" autocomplete="tel" maxlength="60">
+    </div>
+    <div class="field full">
+     <label for="tf-nachricht">Ihre Nachricht *</label>
+     <textarea id="tf-nachricht" name="nachricht" rows="5" maxlength="5000" required></textarea>
+    </div>
+   </div>
+   <div class="hp" aria-hidden="true">
+    <label for="tf-website">Bitte dieses Feld frei lassen</label>
+    <input id="tf-website" name="website" type="text" tabindex="-1" autocomplete="off">
+   </div>
+   <label class="kf-consent">
+    <input type="checkbox" name="einwilligung" value="ja" required>
+    <span>Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage gespeichert werden. Details in der <a href="datenschutz.html">Datenschutzerklärung</a>. *</span>
+   </label>
+   <p class="form-fehler" role="alert" hidden></p>
+   <button class="btn btn-primary btn-lg" type="submit" style="width:100%;margin-top:22px">Nachricht senden</button>
+   <p class="form-hint">* Pflichtfelder. Mehr Platz und mehr Felder haben Sie auf der <a href="kontakt.html" style="color:var(--accent-deep);font-weight:600">Kontaktseite</a>.</p>
+  </form>
+  <div class="form-success" id="terminErfolg">
+   <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+   <h3 class="h3">Vielen Dank für Ihre Nachricht!</h3>
+   <p style="color:var(--text-light-2);margin-top:8px">Wir haben Ihre Anfrage erhalten und melden uns in der Regel innerhalb eines Werktags. Eilig? Rufen Sie uns an unter <a href="tel:+494074302560" style="color:var(--accent-deep);font-weight:600">040 – 7430 2560</a>.</p>
+  </div>
+ </div>
+ </div>
+</section>
+
 <!-- ======================== STANDORT ======================== -->
 <section class="sec sec-gray">
  <div class="container">
@@ -243,7 +295,8 @@
  <li><a href="ueber-uns.html">Über uns</a></li>
  <li><a href="blog.html">Blog</a></li>
  <li><a href="interview.html">Kunden-Interview</a></li>
- <li><a href="termin.html">Kontakt &amp; Termin</a></li>
+ <li><a href="kontakt.html">Kontakt</a></li>
+ <li><a href="termin.html">Termin buchen</a></li>
  <li><a href="https://ki-telefon-agent.com/rechner/">KI-Potenzialanalyse</a></li>
  <li><a href="https://ki-telefon-agent.app.clientclub.net/login" target="_blank" rel="noopener">Partner Login</a></li>
  </ul>
