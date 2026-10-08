@@ -210,6 +210,30 @@
     window.oaiq('init', { pixelId: OAI_PIXEL_ID });
   }
 
+  /* ---------- Terminbuchung als Conversion melden ----------
+     Das Buchungsfenster von HighLevel laeuft in einem eingebetteten Rahmen und
+     meldet sich per postMessage beim Elternfenster (z. B. ["highlevel.setHeight", ...]).
+     Wir werten ausschliesslich Nachrichten von dessen Adresse aus und melden
+     hoechstens einmal je Seitenaufruf. Ohne Einwilligung gibt es kein window.oaiq,
+     dann passiert hier nichts. */
+  (function () {
+    var gemeldet = false;
+    window.addEventListener('message', function (e) {
+      if (gemeldet || e.origin !== 'https://api.leadconnectorhq.com') return;
+      var name = '';
+      try {
+        if (typeof e.data === 'string') name = e.data;
+        else if (Array.isArray(e.data)) name = String(e.data[0]);
+        else if (e.data && e.data.type) name = String(e.data.type);
+      } catch (x) { return; }
+      if (!/appointment|booked|booking[-_. ]?(success|confirmed|complete)/i.test(name)) return;
+      gemeldet = true;
+      if (typeof window.oaiq === 'function') {
+        window.oaiq('measure', 'appointment_scheduled', { type: 'customer_action' });
+      }
+    });
+  })();
+
   /* ---------- E-Mail-Adressen erst im Browser zusammensetzen (Schutz vor Adress-Sammlern) ---------- */
   document.querySelectorAll('a[data-m]').forEach(function (a) {
     var addr = a.getAttribute('data-m').split('').reverse().join('').replace('#', '@');
